@@ -7,7 +7,6 @@
 <Features>
 
 ## Requirements
-
 <Domain Model + texto descritivo>
 
 ## Architecture and Design 
