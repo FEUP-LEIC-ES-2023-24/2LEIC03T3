@@ -84,15 +84,15 @@ UI Mockups:
 
 Home Screen:
 
-![img](README resources/HomeScreenMockup.png)
+![img](READMEresources/HomeScreenMockup.png)
 
 Report Screen:
 
-![img](README resources/ReportScreenMockup.png)
+![img](READMEresources/ReportScreenMockup.png)
 
 ### Domain model
 
-![img](README resources/DomainModel.png)
+![img](READMEresources/DomainModel.png)
 
 Sure, here's a short textual description of each concept represented in the UML diagram:
 
