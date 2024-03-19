@@ -1,0 +1,80 @@
+@startuml
+
+class User {
+    - email: String
+    - password: String
+    - name: String
+    - bookmarks: List<Location>
+    + login(email: String, password: String): boolean
+    + logout(): void
+    + updateProfile(name: String, email: String): void
+}
+
+class Location {
+    - name: String
+    - latitude: Double
+    - longitude: Double
+    + getName(): String
+    + getLatitude(): Double
+    + getLongitude(): Double
+}
+
+class WaterReport {
+    - location: Location
+    - date: Date
+    - parameters: List<Parameter>
+    + getLocation(): Location
+    + getDate(): Date
+    + getParameters(): List<Parameter>
+}
+
+class Parameter {
+    - name: String
+    - value: Double
+    - color: Color
+    + getName(): String
+    + getValue(): Double
+    + getColor(): Color
+}
+
+enum Color {
+    GREEN
+    YELLOW
+    RED
+    BROWN
+}
+
+class DigiWaterApp {
+    - user: User
+    + login(email: String, password: String): boolean
+    + logout(): void
+    + updateProfile(name: String, email: String): void
+    + scanWaterQuality(): List<Location>
+    + getWaterReports(): List<WaterReport>
+    + getWaterReport(location: Location): WaterReport
+    + bookmarkLocation(location: Location): void
+}
+
+class MapComponent {
+    - waterReports: List<WaterReport>
+    + displayWaterReports(): void
+    + displayWaterReport(location: Location): void
+}
+
+class ReportScreenComponent {
+    - waterReport: WaterReport
+    + displayWaterReport(): void
+}
+
+DigiWaterApp --> User
+DigiWaterApp --> MapComponent
+DigiWaterApp --> ReportScreenComponent
+User "1" *-- "*" Location
+User "1" *-- "*" WaterReport
+Location "1" *-- "*" WaterReport
+WaterReport "1" *-- "*" Parameter
+MapComponent o-- Location
+MapComponent o-- WaterReport
+ReportScreenComponent o-- WaterReport
+
+@enduml
