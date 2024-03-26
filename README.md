@@ -60,12 +60,14 @@ In this section, you should describe all kinds of requirements for your module: 
 
 ### User Stories
 
-EPICS:
+- Epics:
+
 As a Gerês enthusiast, I want to be able to know the quality of a body of water that’s near me (location-based).
 
 As a Gerês enthusiast, I want to be able to search for bodies of water in advance so that I can get a report about its water quality (map-based with pins).
 
-User Stories:
+- User Stories:
+
 As a hiker in Gêres, I want to find a safe body of water so that I can bathe and relax after a long walk. 
 
 As a camper in Gêres, I want to find a good spot next to a safe body of water so that I can use it to bath and drink.
@@ -90,84 +92,90 @@ Report Screen:
 
 ![img](READMEresources/ReportScreenMockup.png)
 
+Map Screen:
+
+![img](READMEresources/MapScreenMockup.png)
+
+Profile:
+
+![img](READMEresources/ProfileMockup.png)
+
 ### Domain model
 
 ![img](READMEresources/DomainModel.png)
 
-Sure, here's a short textual description of each concept represented in the UML diagram:
+**User**:
+  - Description: Represents a user of the DigiWater application.
+  - Attributes:
+    - email: The email address of the user used for login.
+    - password: The password associated with the user's account.
+    - name: The name of the user.
+    - bookmarks: A list of locations bookmarked by the user.
+  - Methods:
+    - login(email, password): Authenticates the user with the provided email and password.
+    - logout(): Logs out the user from the application.
+    - updateProfile(name, email): Updates the user's profile information.
 
-1. **User**:
-   - Description: Represents a user of the DigiWater application.
-   - Attributes:
-     - email: The email address of the user used for login.
-     - password: The password associated with the user's account.
-     - name: The name of the user.
-     - bookmarks: A list of locations bookmarked by the user.
-   - Methods:
-     - login(email, password): Authenticates the user with the provided email and password.
-     - logout(): Logs out the user from the application.
-     - updateProfile(name, email): Updates the user's profile information.
+**Location**:
+  - Description: Represents a geographical location, such as a lake, river, lagoon, or creek.
+  - Attributes:
+    - name: The name or identifier of the location.
+    - latitude: The latitude coordinate of the location.
+    - longitude: The longitude coordinate of the location.
+  - Methods:
+    - getName(): Retrieves the name of the location.
+    - getLatitude(): Retrieves the latitude coordinate of the location.
+    - getLongitude(): Retrieves the longitude coordinate of the location.
 
-2. **Location**:
-   - Description: Represents a geographical location, such as a lake, river, lagoon, or creek.
-   - Attributes:
-     - name: The name or identifier of the location.
-     - latitude: The latitude coordinate of the location.
-     - longitude: The longitude coordinate of the location.
-   - Methods:
-     - getName(): Retrieves the name of the location.
-     - getLatitude(): Retrieves the latitude coordinate of the location.
-     - getLongitude(): Retrieves the longitude coordinate of the location.
+**WaterReport**:
+  - Description: Represents a report detailing the quality of water at a specific location.
+  - Attributes:
+    - location: The location for which the report is generated.
+    - date: The date when the report was generated.
+    - parameters: A list of parameters describing the water quality.
+  - Methods:
+    - getLocation(): Retrieves the location associated with the report.
+    - getDate(): Retrieves the date of the report.
+    - getParameters(): Retrieves the parameters describing the water quality.
 
-3. **WaterReport**:
-   - Description: Represents a report detailing the quality of water at a specific location.
-   - Attributes:
-     - location: The location for which the report is generated.
-     - date: The date when the report was generated.
-     - parameters: A list of parameters describing the water quality.
-   - Methods:
-     - getLocation(): Retrieves the location associated with the report.
-     - getDate(): Retrieves the date of the report.
-     - getParameters(): Retrieves the parameters describing the water quality.
+**Parameter**:
+  - Description: Represents a specific parameter used to assess water quality.
+  - Attributes:
+    - name: The name or identifier of the parameter.
+    - value: The value of the parameter, indicating its measurement.
+    - color: The color associated with the parameter value for visualization purposes.
+  - Methods:
+    - getName(): Retrieves the name of the parameter.
+    - getValue(): Retrieves the value of the parameter.
+    - getColor(): Retrieves the color associated with the parameter value.
 
-4. **Parameter**:
-   - Description: Represents a specific parameter used to assess water quality.
-   - Attributes:
-     - name: The name or identifier of the parameter.
-     - value: The value of the parameter, indicating its measurement.
-     - color: The color associated with the parameter value for visualization purposes.
-   - Methods:
-     - getName(): Retrieves the name of the parameter.
-     - getValue(): Retrieves the value of the parameter.
-     - getColor(): Retrieves the color associated with the parameter value.
+**DigiWaterApp**:
+  - Description: Represents the main application controller managing user interactions and data retrieval.
+  - Attributes:
+    - user: The current user of the application.
+  - Methods:
+    - login(email, password): Authenticates the user with the provided email and password.
+    - logout(): Logs out the user from the application.
+    - updateProfile(name, email): Updates the user's profile information.
+    - scanWaterQuality(): Initiates a scan of water quality at nearby locations.
+    - getWaterReports(): Retrieves a list of water reports.
+    - getWaterReport(location): Retrieves the water report for a specific location.
+    - bookmarkLocation(location): Adds a location to the user's bookmarks.
 
-5. **DigiWaterApp**:
-   - Description: Represents the main application controller managing user interactions and data retrieval.
-   - Attributes:
-     - user: The current user of the application.
-   - Methods:
-     - login(email, password): Authenticates the user with the provided email and password.
-     - logout(): Logs out the user from the application.
-     - updateProfile(name, email): Updates the user's profile information.
-     - scanWaterQuality(): Initiates a scan of water quality at nearby locations.
-     - getWaterReports(): Retrieves a list of water reports.
-     - getWaterReport(location): Retrieves the water report for a specific location.
-     - bookmarkLocation(location): Adds a location to the user's bookmarks.
+**MapComponent**:
+  - Description: Represents a UI component responsible for displaying water reports on a map.
+  - Attributes:
+    - waterReports: A list of water reports to be displayed on the map.
+  - Methods:
+    - displayWaterReports(): Displays water reports on the map.
+    - displayWaterReport(location): Displays a specific water report on the map.
 
-6. **MapComponent**:
-   - Description: Represents a UI component responsible for displaying water reports on a map.
-   - Attributes:
-     - waterReports: A list of water reports to be displayed on the map.
-   - Methods:
-     - displayWaterReports(): Displays water reports on the map.
-     - displayWaterReport(location): Displays a specific water report on the map.
-
-7. **ReportScreenComponent**:
-   - Description: Represents a UI component responsible for displaying detailed water reports.
-   - Attributes:
-     - waterReport: The water report to be displayed.
-   - Methods:
-     - displayWaterReport(): Displays the detailed water report on the screen.
+**ReportScreenComponent**:
+  - Description: Represents a UI component responsible for displaying detailed water reports.
+  - Attributes:
+    - waterReport: The water report to be displayed.
+  - Methods:
+    - displayWaterReport(): Displays the detailed water report on the screen.
 
 ## Architecture and Design
 The architecture of a software system encompasses the set of key decisions about its overall organization. 
