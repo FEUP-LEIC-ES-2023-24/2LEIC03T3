@@ -227,13 +227,25 @@ In this section you should start by briefly describing the overall components of
 As of External Services, the **Email API** is a vital component in this system. It enables communication via email and facilitates automated email-based workflows and notifications. The **Google Maps API** provides a comprehensive set of tools and services for incorporating mapping, geolocation, and location-based services. The **Water Quality Data API** provides access to various data related to water quality measurements, such as pH levels, dissolved oxygen, turbidity, temperature, and pollutant concentrations in bodies of water, in this case specifically in Gêres. 
 
 ### Physical architecture
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams (Deployment View) or component diagrams (Implementation View), separate or integrated, showing the physical structure of the system.
 
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for ESOF are, for example, frameworks for mobile applications (such as Flutter).
+![img](READMEresources/deployment_diagram.png)
 
-Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic Ticketing System (please notice that, instead of software components, one should represent their physical/executable manifestations for deployment, called artifacts in UML; the diagram should be accompanied by a short description of each node and artifact):
+The physical architecture of the DigiWater system consists of the following components:
 
-![DeploymentView](https://user-images.githubusercontent.com/9655877/160592491-20e85af9-0758-4e1e-a704-0db1be3ee65d.png)
+### Nodes:
+- **Mobile Device:** Represents a smartphone or tablet where the DigiWater mobile application is installed and run.
+- **Server (Computer):** Represents a web server where the DigiWater server API is hosted.
+
+### Artifacts:
+- **DigiWater App:** The mobile application installed on users' devices, developed using the Flutter framework.
+- **Server API:** The server-side API responsible for handling requests from the mobile application and interacting with the database.
+- **Database (MySQL):** The MySQL database used to store data about water quality, including analysis reports and location history.
+
+### Technologies:
+- **Flutter:** The framework used to develop the DigiWater mobile application.
+- **Node.js:** The runtime environment used to host the DigiWater server API.
+- **MySQL:** The relational database management system used to store data for the DigiWater application.
+
 
 ### Vertical prototype
 
