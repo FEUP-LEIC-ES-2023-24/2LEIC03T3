@@ -70,19 +70,47 @@ As a Gerês enthusiast, I want to be able to search for bodies of water in advan
 
 As a hiker in Gêres, I want to find a safe body of water so that I can bathe and relax after a long walk. 
 
+  Given that I am a hiker in Gêres
+  When I search for nearby bodies of water
+  Then I should be provided with information on safe options for bathing, relaxing, and hydrating after my hike
+
 As a camper in Gêres, I want to find a good spot next to a safe body of water so that I can use it to bath and drink.
+
+  Given that I am a camper in Gêres
+  When I search for camping spots near bodies of water
+  Then I should be presented with options that include safe bathing areas 
 
 As a swimmer enthusiast, I want to easily access a detailed map of all body of water in Gêres, so I know which ones to avoid.
 
+  Given that I am a swimmer enthusiast
+  When I access the map of bodies of water in Gêres
+  Then I should be able to view detailed information indicating which areas to avoid
+
 As a user, I want to receive up to date information about the quality of all bodies of water in Gêres, so that I don’t face misleading data that ultimately can compromise my health. (always up to date data)
+
+  Given that I am a user seeking information about the quality of bodies of water in Gêres
+  When I access the platform
+  Then I should receive the latest and most accurate data regarding water quality
 
 As a user, I want to know when the state of a body of water was last updated, so I don’t have any doubts about its condition.
 
+  Given that I am viewing information about a specific body of water in Gêres
+  When I check its status
+  Then I should see the date and time of the last update regarding its condition
+
 As a user, I want to search for a specific beach, lake, river, lagoon or creeks and find trustworthy information about it. (mapa com pins)
+
+  Given that I want to find information about a specific body of water in Gêres
+  When I search for it by name or type
+  Then I should be presented with reliable and detailed information about that location
 
 As a user, I want to bookmark my favourite spots so that I can easily access it in a next time. 
 
-UI Mockups:
+  Given that I have found a favorite spot at a body of water in Gêres
+  When I navigate to its profile
+  Then I should be able to bookmark it for easy access in the future
+
+- UI Mockups:
 
 Home Screen:
 
@@ -187,7 +215,6 @@ To document the architecture requires describing the decomposition of the system
 In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
 
 ### Logical architecture 
-The purpose of this subsection is to document the high-level logical structure of the code (Logical View), using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
 
 ![img](READMEresources/Archlog.png) 
 
@@ -199,7 +226,6 @@ The purpose of this subsection is to document the high-level logical structure o
 
 As of External Services, the **Email API** is a vital component in this system. It enables communication via email and facilitates automated email-based workflows and notifications. The **Google Maps API** provides a comprehensive set of tools and services for incorporating mapping, geolocation, and location-based services. The **Water Quality Data API** provides access to various data related to water quality measurements, such as pH levels, dissolved oxygen, turbidity, temperature, and pollutant concentrations in bodies of water, in this case specifically in Gêres. 
 
-
 ### Physical architecture
 The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams (Deployment View) or component diagrams (Implementation View), separate or integrated, showing the physical structure of the system.
 
@@ -210,12 +236,13 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 ![DeploymentView](https://user-images.githubusercontent.com/9655877/160592491-20e85af9-0758-4e1e-a704-0db1be3ee65d.png)
 
 ### Vertical prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system integrating as much technologies we can.
 
-In this subsection please describe which feature, or part of it, you have implemented, and how, together with a snapshot of the user interface, if applicable.
+As a product increment #0 (vertical prototype) we decided to implement the Home Screen, that is the main scrren of our app where the user can do a location-based water quality scan by click the button in the center of the screen. 
+We already implemented the Flutter (Dart) code for other features of our app, but chose the main screen as the product increment #0 (vertical prototype).
 
-At this phase, instead of a complete user story, you can simply implement a small part of a feature that demonstrates thay you can use the technology, for example, show a screen with the app credits (name and authors).
+Snapshot of the user interface:
 
+![img](READMEresources/HomeScreenMockup.png)
 
 ## Project management
 Software project management is the art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
