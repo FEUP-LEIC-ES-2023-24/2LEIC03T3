@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'map_model.dart';
-export 'map_model.dart';
+import 'package:project_es/models/map_model.dart';
+export 'package:project_es/models/map_model.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});

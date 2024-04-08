@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'package:project_es/models/home_page_model.dart';
+export 'package:project_es/models/home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
