@@ -109,24 +109,6 @@ As a user, I want to bookmark my favourite spots so that I can easily access it 
   When I navigate to its profile
   Then I should be able to bookmark it for easy access in the future
 
-- UI Mockups:
-
-Home Screen:
-
-![img](READMEresources/HomeScreenMockup.png)
-
-Report Screen:
-
-![img](READMEresources/ReportScreenMockup.png)
-
-Map Screen:
-
-![img](READMEresources/MapScreenMockup.png)
-
-Profile:
-
-![img](READMEresources/ProfileMockup.png)
-
 ### Domain model
 
 ![img](READMEresources/DomainModel.png)
@@ -188,4 +170,4 @@ Snapshot of the user interface:
 
 - Scrum board after at the end of the Sprint Planning:
 
-![img](READMEresources/sprintplanning.png)
+![img](READMEresources/sprintplanning1.png)
