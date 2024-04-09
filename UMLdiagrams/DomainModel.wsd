@@ -54,23 +54,7 @@ enum Color {
     BROWN
 }
 
-class DigiWaterApp {
-    - user: User
-    /'
-    + login(email: String, password: String): boolean
-    + logout(): void
-    + updateProfile(name: String, email: String): void
-    + scanWaterQuality(): Location
-    + getWaterReports(): List<WaterReport>
-    + getWaterReport(location: Location): WaterReport
-    '/
-}
-
 class Map {
-    - pins: List<Pin>
-    /'
-    + displayPins(): void
-    '/
 }
 
 class Pin {
@@ -82,19 +66,8 @@ class Pin {
     '/
 }
 
-class ReportScreenDisplay {
-    - waterReport: WaterReport
-    /'
-    + displayWaterReport(): void
-    '/
-}
-
-DigiWaterApp <|-- User
-DigiWaterApp <|-- Map
-DigiWaterApp <|-- ReportScreenDisplay
 User "1" *-- "1" Location
 WaterReport "1" *-- "9" Parameter
-ReportScreenDisplay o-- WaterReport
 Parameter "1" -- "1" Color
 Map "1" -- "1..*" Pin
 Pin "1" *-- "1" WaterReport
