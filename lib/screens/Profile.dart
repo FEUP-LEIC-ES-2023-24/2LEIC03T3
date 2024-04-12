@@ -9,8 +9,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'profile_model.dart';
-export 'profile_model.dart';
+import 'package:project_es/models/profile_model.dart';
+export 'package:project_es/models/profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({super.key});

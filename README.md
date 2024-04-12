@@ -33,11 +33,7 @@ Tomás Oliveira - up202208415@up.pt
 
 ### Product Vision
 
-Our mobile application is designed to address the concerns of travelers, hikers and adventurers regarding the quality of water in Gerês' lakes, rivers, lagoons and small creeks. Through intuitive visualizations and metrics, DigiWater will empower travelers with crucial information about the safety of water in Gerês, helping them make informed decisions about hydration and fun.
-
-While existing water testing devices are not mobile phone-compatible, DigiWater leverages publicly available data to offer comprehensive assessments without the need for specialized hardware. In the future we aim to extend our vision globally, recognizing the diverse water quality challenges faced by travelers across continents, from Europe to Africa and beyond.
-
-DigiWater aims to become the go-to companion for travelers seeking reassurance and guidance on water quality, empowering them to explore with confidence and stay healthy throughout their journeys.
+DigiWater aims to become the go-to companion for Gerês' travelers seeking reassurance and guidance on water quality, empowering them to explore with confidence and stay healthy throughout their journeys. With DigiWater, its users can do a water quality scan using its current location or use a map to search for a specific site, attaining a detailed water quality report of the specific location. Hence, one can make informed decision about future adventures in Gerês and be sure about the safety of the different water bodies Gerês has to offer.
 
 ### Features and Assumptions
 
@@ -50,9 +46,12 @@ DigiWater aims to become the go-to companion for travelers seeking reassurance a
 - Report Screen - specific report of a certain body of water with a general overview (report), plot of the various parameters (with color and value), as well as tips (telling if water is safe to bath, drink or use or neither). The date of the last update of the report data is also provided;
 - Bookmark favourite spots - the user is also able to bookmark its favourite spots so that he can revist the respective reports later;
 
+- We assume the app will depend on an API to a map-service (maybe OpenStreetMap). The underlying data for our app will have to be partially simulated by us, as we assume there is not very much data available (yet).
+
 ### Elevator Pitch
 
-DigiWater aims to become the go-to companion for Gerês' travelers seeking reassurance and guidance on water quality, empowering them to explore with confidence and stay healthy throughout their journeys. With DigiWater, its users can do a water quality scan using its current location or use a map to search for a specific site, attaining a detailed water quality report of the specific location. Hence, one can make informed decision about future adventures in Gerês and be sure about the safety of the different water bodies Gerês has to offer.
+Our mobile application, DigiWater, is designed to address the concerns of travelers, hikers and adventurers regarding the quality of water in Gerês' lakes, rivers, lagoons and small creeks. Through intuitive visualizations and metrics, DigiWater will empower travelers with crucial information about the safety of water in Gerês, helping them make informed decisions about hydration and fun.
+While existing water testing devices are not mobile phone-compatible, DigiWater leverages publicly available data to offer comprehensive assessments without the need for specialized hardware. In the future we aim to extend our vision globally, recognizing the diverse water quality challenges faced by travelers across continents, from Europe to Africa and beyond.
 
 ## Requirements
 
@@ -110,100 +109,11 @@ As a user, I want to bookmark my favourite spots so that I can easily access it 
   When I navigate to its profile
   Then I should be able to bookmark it for easy access in the future
 
-- UI Mockups:
-
-Home Screen:
-
-![img](READMEresources/HomeScreenMockup.png)
-
-Report Screen:
-
-![img](READMEresources/ReportScreenMockup.png)
-
-Map Screen:
-
-![img](READMEresources/MapScreenMockup.png)
-
-Profile:
-
-![img](READMEresources/ProfileMockup.png)
-
 ### Domain model
 
 ![img](READMEresources/DomainModel.png)
 
-**User**:
-  - Description: Represents a user of the DigiWater application.
-  - Attributes:
-    - email: The email address of the user used for login.
-    - password: The password associated with the user's account.
-    - name: The name of the user.
-    - bookmarks: A list of locations bookmarked by the user.
-  - Methods:
-    - login(email, password): Authenticates the user with the provided email and password.
-    - logout(): Logs out the user from the application.
-    - updateProfile(name, email): Updates the user's profile information.
-
-**Location**:
-  - Description: Represents a geographical location, such as a lake, river, lagoon, or creek.
-  - Attributes:
-    - name: The name or identifier of the location.
-    - latitude: The latitude coordinate of the location.
-    - longitude: The longitude coordinate of the location.
-  - Methods:
-    - getName(): Retrieves the name of the location.
-    - getLatitude(): Retrieves the latitude coordinate of the location.
-    - getLongitude(): Retrieves the longitude coordinate of the location.
-
-**WaterReport**:
-  - Description: Represents a report detailing the quality of water at a specific location.
-  - Attributes:
-    - location: The location for which the report is generated.
-    - date: The date when the report was generated.
-    - parameters: A list of parameters describing the water quality.
-  - Methods:
-    - getLocation(): Retrieves the location associated with the report.
-    - getDate(): Retrieves the date of the report.
-    - getParameters(): Retrieves the parameters describing the water quality.
-
-**Parameter**:
-  - Description: Represents a specific parameter used to assess water quality.
-  - Attributes:
-    - name: The name or identifier of the parameter.
-    - value: The value of the parameter, indicating its measurement.
-    - color: The color associated with the parameter value for visualization purposes.
-  - Methods:
-    - getName(): Retrieves the name of the parameter.
-    - getValue(): Retrieves the value of the parameter.
-    - getColor(): Retrieves the color associated with the parameter value.
-
-**DigiWaterApp**:
-  - Description: Represents the main application controller managing user interactions and data retrieval.
-  - Attributes:
-    - user: The current user of the application.
-  - Methods:
-    - login(email, password): Authenticates the user with the provided email and password.
-    - logout(): Logs out the user from the application.
-    - updateProfile(name, email): Updates the user's profile information.
-    - scanWaterQuality(): Initiates a scan of water quality at nearby locations.
-    - getWaterReports(): Retrieves a list of water reports.
-    - getWaterReport(location): Retrieves the water report for a specific location.
-    - bookmarkLocation(location): Adds a location to the user's bookmarks.
-
-**MapComponent**:
-  - Description: Represents a UI component responsible for displaying water reports on a map.
-  - Attributes:
-    - waterReports: A list of water reports to be displayed on the map.
-  - Methods:
-    - displayWaterReports(): Displays water reports on the map.
-    - displayWaterReport(location): Displays a specific water report on the map.
-
-**ReportScreenComponent**:
-  - Description: Represents a UI component responsible for displaying detailed water reports.
-  - Attributes:
-    - waterReport: The water report to be displayed.
-  - Methods:
-    - displayWaterReport(): Displays the detailed water report on the screen.
+The DigiWater app aims to to address the concerns of travelers, hikers and adventurers regarding the quality of water in Gerês' lakes, rivers, lagoons and small creeks. Each User, after logging in, has an unique ID, as well as an email, password and name associated to it. Each user has also always a (current) location which has a name and a latitude and longitude. The location shall be a lake, river, lagoon or creek in Gerês. The DigiWater app also has a Map that has many unique Pins. Each pin has a color, a location and one WaterReport associated to it. A water report represents a report detailing the quality of water at a specific location. It has a unique location, a date, a tip and 9 associated Parameters used to assess water quality. Each Parameter has a name, value and unit, as well as a color associated to it.
 
 ## Architecture and Design
 The architecture of a software system encompasses the set of key decisions about its overall organization. 
@@ -257,16 +167,7 @@ Snapshot of the user interface:
 ![img](READMEresources/HomeScreenMockup.png)
 
 ## Project management
-Software project management is the art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
 
-In the context of ESOF, we recommend each team to adopt a set of project management practices and tools capable of registering tasks, assigning tasks to team members, adding estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
+- Scrum board after at the end of the Sprint Planning:
 
-Common practices of managing iterative software development are: backlog management, release management, estimation, iteration planning, iteration development, acceptance tests, and retrospectives.
-
-You can find below information and references related with the project management in our team: 
-
-* Backlog management: Product backlog and Sprint backlog in a [Github Projects board](https://github.com/orgs/FEUP-LEIC-ES-2023-24/projects/64);
-* Release management: [v0](#), v1, v2, v3, ...;
-* Sprint planning and retrospectives: 
-  * plans: screenshots of Github Projects board at begin and end of each iteration;
-  * retrospectives: meeting notes in a document in the repository;
+![img](READMEresources/sprintplanning1.png)
