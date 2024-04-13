@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart'
 /// Example:
 /// ```dart
 /// import 'firebase_options.dart';
+/// // api key google maps AIzaSyA3BgAJBN8DFofqxJJMm56jeo8NOvedp1Q
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
