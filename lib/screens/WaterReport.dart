@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:project_es/models/water_report_model.dart';
-export 'package:project_es/models/water_report_model.dart';
+import '../models/water_report_model.dart';
+export '../models/water_report_model.dart';
 
 class WaterReportWidget extends StatefulWidget {
   const WaterReportWidget({super.key});
