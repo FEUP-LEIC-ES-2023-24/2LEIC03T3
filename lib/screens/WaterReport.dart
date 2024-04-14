@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_es/screens/Map.dart';
 
 class DefaultWaterReportScreen extends StatelessWidget {
+  const DefaultWaterReportScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +12,7 @@ class DefaultWaterReportScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MapScreen()),
+              MaterialPageRoute(builder: (context) => const MapScreen()),
             );
           },
         ),
@@ -22,7 +24,7 @@ class DefaultWaterReportScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color(0xFF5bb5da),
+        backgroundColor: const Color(0xFF5bb5da),
       ),
       body: const Center(
         child: Text(
