@@ -159,7 +159,7 @@ The physical architecture of the DigiWater system consists of the following comp
 
 ### Vertical prototype
 
-As a product increment #0 (vertical prototype) we decided to implement the Home Screen, that is the main scrren of our app where the user can do a location-based water quality scan by click the button in the center of the screen. 
+As a product increment #0 (vertical prototype) we decided to implement the Home Screen, that is the main screen of our app where the user can do a location-based water quality scan by click the button in the center of the screen. 
 We already implemented the Flutter (Dart) code for other features of our app, but chose the main screen as the product increment #0 (vertical prototype).
 
 Snapshot of the user interface:
@@ -168,6 +168,22 @@ Snapshot of the user interface:
 
 ## Project management
 
-- Scrum board after at the end of the Sprint Planning:
+- Scrum board after at the end of the Sprint 1 Planning:
 
 ![img](READMEresources/sprintplanning1.png)
+
+- Scrum board after Sprint 1:
+
+
+- Notes on the Sprint Review:
+
+Feedback provided is recorded in the repository: notes on the delivered features and how the product backlog should be adapted.
+
+- Notes on the Sprint Retrospective:
+
+Team retrospectives have been done and registered in Github.
+Retrospective includes suggestions for improvement and a strategy (Verifiable Action Points).
+
+- Happiness Meter after Sprint 1:
+
+Teams provided feedback in the happiness meter.
