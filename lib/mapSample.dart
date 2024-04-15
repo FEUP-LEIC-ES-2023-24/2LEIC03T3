@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
 import 'consts.dart';
+import 'screens/WaterReport.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -60,15 +61,21 @@ class _MapPageState extends State<MapPage> {
   }
 
   Iterable<Marker> _generateMarkers() sync* {
-    if (coordinatesGeres.length >= 2) {
-      for (int i = 0; i < 2; i++) {
-        yield Marker(
-          markerId: MarkerId("Marker_$i"),
-          position: coordinatesGeres[i],
-        );
-      }
+  if (coordinatesGeres.length >= 2) {
+    for (int i = 0; i < 8; i++) {
+      yield Marker(
+        markerId: MarkerId("Marker_$i"),
+        position: coordinatesGeres[i],
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DefaultWaterReportScreen()),
+          );
+        },
+      );
     }
   }
+}
 
   Future<void> cameraToPosition(LatLng position) async {
     final GoogleMapController controller = await _mapController.future;

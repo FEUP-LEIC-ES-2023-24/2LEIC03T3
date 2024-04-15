@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_es/screens/Map.dart';
-
+//import 'package:project_es/screens/mapSample.dart';
 import '../mapSample.dart';
 
 class DefaultWaterReportScreen extends StatelessWidget {
@@ -11,10 +10,11 @@ class DefaultWaterReportScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
+          color: Colors.white,
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MapScreen()),
+              MaterialPageRoute(builder: (context) => const MapPage()),
             );
           },
         ),
