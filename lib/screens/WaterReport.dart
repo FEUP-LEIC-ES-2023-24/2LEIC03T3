@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_es/screens/Map.dart';
 
+import '../mapSample.dart';
+
 class DefaultWaterReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class DefaultWaterReportScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MapScreen()),
+              MaterialPageRoute(builder: (context) => MapPage()),
             );
           },
         ),
