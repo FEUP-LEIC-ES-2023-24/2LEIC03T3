@@ -12,10 +12,8 @@ class DefaultWaterReportScreen extends StatelessWidget {
         leading: BackButton(
           color: Colors.white,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MapPage()),
-            );
+            Navigator.pop(
+              context);
           },
         ),
         title: const Text(

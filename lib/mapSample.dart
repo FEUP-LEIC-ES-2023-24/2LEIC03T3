@@ -32,6 +32,18 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+  LatLng calculateCentroid(List<LatLng> points) {
+  double latitude = 0;
+  double longitude = 0;
+
+  for (var point in points) {
+    latitude += point.latitude;
+    longitude += point.longitude;
+  }
+
+  return LatLng(latitude / points.length, longitude / points.length);
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +62,9 @@ class _MapPageState extends State<MapPage> {
       ),
       body:  GoogleMap(
               onMapCreated: (controller) => _mapController.complete(controller),
-              initialCameraPosition: const CameraPosition(
-                target: LatLng(41.442, -8.29561),
-                zoom:13,
+              initialCameraPosition: CameraPosition(
+                target: calculateCentroid(coordinatesGeres),
+                zoom: 11,
               ),
               markers: Set<Marker>.of(_generateMarkers()),
               polylines: Set<Polyline>.of(_polylines.values),
@@ -62,7 +74,7 @@ class _MapPageState extends State<MapPage> {
 
   Iterable<Marker> _generateMarkers() sync* {
   if (coordinatesGeres.length >= 2) {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < coordinatesGeres.length; i++) {
       yield Marker(
         markerId: MarkerId("Marker_$i"),
         position: coordinatesGeres[i],
