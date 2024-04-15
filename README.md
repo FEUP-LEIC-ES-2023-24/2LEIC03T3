@@ -174,6 +174,7 @@ Snapshot of the user interface:
 
 - Scrum board after Sprint 1:
 
+![img](READMEresources/sprint1board.png)
 
 - Notes on the Sprint Review:
 
