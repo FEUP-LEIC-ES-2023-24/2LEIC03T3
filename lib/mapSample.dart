@@ -73,7 +73,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   Iterable<Marker> _generateMarkers() sync* {
-  if (coordinatesGeres.length >= 2) {
     for (int i = 0; i < coordinatesGeres.length; i++) {
       yield Marker(
         markerId: MarkerId("Marker_$i"),
@@ -87,7 +86,6 @@ class _MapPageState extends State<MapPage> {
       );
     }
   }
-}
 
   Future<void> cameraToPosition(LatLng position) async {
     final GoogleMapController controller = await _mapController.future;
