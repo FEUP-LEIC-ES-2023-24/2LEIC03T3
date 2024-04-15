@@ -4,6 +4,8 @@ import 'package:project_es/screens/Map.dart';
 import '../mapSample.dart';
 
 class DefaultWaterReportScreen extends StatelessWidget {
+  const DefaultWaterReportScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,11 +14,11 @@ class DefaultWaterReportScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MapPage()),
+              MaterialPageRoute(builder: (context) => const MapScreen()),
             );
           },
         ),
-        title: Text(
+        title: const Text(
           'Water Quality Report',
           style: TextStyle(
             color: Colors.white,
@@ -24,9 +26,9 @@ class DefaultWaterReportScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color(0xFF5bb5da),
+        backgroundColor: const Color(0xFF5bb5da),
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'Water Report Screen',
           style: TextStyle(
