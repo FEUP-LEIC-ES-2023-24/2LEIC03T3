@@ -168,7 +168,9 @@ Snapshot of the user interface:
 
 ## Project management
 
-- Scrum board after at the end of the Sprint 1 Planning:
+### Sprint 1
+
+- Scrum board at the end of the Sprint 1 Planning:
 
 ![img](READMEresources/sprintplanning1.png)
 
@@ -178,13 +180,20 @@ Snapshot of the user interface:
 
 - Notes on the Sprint Review:
 
-Feedback provided is recorded in the repository: notes on the delivered features and how the product backlog should be adapted.
+Demo of the product increment was successfully done on the web, because we had problems launching our app in an emulator and release of the product increment was created in Github.
+Goals of the Sprint 1 were accomplished and delivered features add value to the end-user. Product backlog was adapted accordingly.
 
 - Notes on the Sprint Retrospective:
 
-Team retrospectives have been done and registered in Github.
-Retrospective includes suggestions for improvement and a strategy (Verifiable Action Points).
+We implemented what we had planned and are satisfied with what we did and how we worked as a team.
+Unfortunately, we weren't able to test and launch our app using an emulator, just in the web. This problem still puzzles us and solving it is our top-priority now.
 
 - Happiness Meter after Sprint 1:
 
-Teams provided feedback in the happiness meter.
+We are very happy and proud about this Sprint 1.
+
+### Sprint 2
+
+- Scrum board at the end of the Sprint 2 Planning:
+
+![img](READMEresources/sprint2planning.png)
