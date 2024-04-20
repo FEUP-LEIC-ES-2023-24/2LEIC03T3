@@ -1,12 +1,20 @@
 buildscript {
+<<<<<<< HEAD
     ext.kotlin_version = '1.9.10'
+=======
+    ext.kotlin_version = '1.9.0'  // atualize esta linha com a nova versão
+>>>>>>> 6ee53db9969424f9add3d800ab6354a015e9c6a2
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:7.3.0'
+=======
+        classpath 'com.android.tools.build:gradle:7.0.2'
+>>>>>>> 6ee53db9969424f9add3d800ab6354a015e9c6a2
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -22,6 +30,10 @@ rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ee53db9969424f9add3d800ab6354a015e9c6a2
 subprojects {
     project.evaluationDependsOn(':app')
 }

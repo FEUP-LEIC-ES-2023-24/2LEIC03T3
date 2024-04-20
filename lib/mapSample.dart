@@ -61,14 +61,14 @@ class _MapPageState extends State<MapPage> {
         backgroundColor: const Color(0xFF5bb5da),
       ),
       body:  GoogleMap(
-              onMapCreated: (controller) => _mapController.complete(controller),
-              initialCameraPosition: CameraPosition(
-                target: calculateCentroid(coordinatesGeres),
-                zoom: 11,
-              ),
-              markers: Set<Marker>.of(_generateMarkers()),
-              polylines: Set<Polyline>.of(_polylines.values),
+            onMapCreated: (controller) => _mapController.complete(controller),
+            initialCameraPosition: CameraPosition(
+              target: calculateCentroid(coordinatesGeres),  // Substitua com a latitude e longitude desejadas
+              zoom: 11,
             ),
+            markers: Set<Marker>.of(_generateMarkers()),
+            polylines: Set<Polyline>.of(_polylines.values),
+          ),
     );
   }
 
@@ -98,6 +98,7 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+  bool _cameraPositionSet = false;
   Future<void> getLocationUpdates() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
@@ -116,14 +117,14 @@ class _MapPageState extends State<MapPage> {
         return;
       }
     }
-    _locationController.onLocationChanged
-        .listen((LocationData currentLocation) {
-      if (currentLocation.longitude != null &&
-          currentLocation.latitude != null) {
+    _locationController.onLocationChanged.listen((LocationData currentLocation) {
+      if (currentLocation.longitude != null && currentLocation.latitude != null) {
         setState(() {
-          _currentP =
-              LatLng(currentLocation.latitude!, currentLocation.longitude!);
-          cameraToPosition(_currentP!);
+          _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          if (!_cameraPositionSet) {
+            cameraToPosition(_currentP!);
+            _cameraPositionSet = true;
+          }
         });
       }
     });

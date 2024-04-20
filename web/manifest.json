@@ -1,6 +1,6 @@
 {
-    "name": "project_es",
-    "short_name": "project_es",
+    "name": "esproject",
+    "short_name": "esproject",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
