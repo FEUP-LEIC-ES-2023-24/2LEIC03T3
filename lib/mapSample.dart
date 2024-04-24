@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
 import 'consts.dart';
+import 'firebase_parse.dart';
 import 'screens/WaterReport.dart';
 
 class MapPage extends StatefulWidget {
@@ -49,40 +50,56 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Map',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor: const Color(0xFF5bb5da),
-      ),
-      body:  GoogleMap(
-            onMapCreated: (controller) => _mapController.complete(controller),
-            initialCameraPosition: CameraPosition(
-              target: calculateCentroid(coordinatesGeres),  // Substitua com a latitude e longitude desejadas
-              zoom: 11,
+    return FutureBuilder<List<WaterResource>>(
+      future: getAllWaterResources(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          List<WaterResource> resources = snapshot.data!;
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'Map',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              backgroundColor: const Color(0xFF5bb5da),
             ),
-            markers: Set<Marker>.of(_generateMarkers()),
-            //polylines: Set<Polyline>.of(_polylines.values),
-          ),
+            body: GoogleMap(
+              onMapCreated: (controller) => _mapController.complete(controller),
+              initialCameraPosition: CameraPosition(
+                target: calculateCentroid(resources.map((resource) {
+                  List<String> coordinates = resource.coordinates.split(', ');
+                  return LatLng(double.parse(coordinates[0]), double.parse(coordinates[1]));
+                }).toList()),
+                zoom: 11,
+              ),
+              markers: Set<Marker>.of(_generateMarkers(resources)),
+            ),
+          );
+        }
+      },
     );
   }
 
-  Iterable<Marker> _generateMarkers() sync* {
-    for (int i = 0; i < coordinatesGeres.length; i++) {
+  Iterable<Marker> _generateMarkers(List<WaterResource> resources) sync* {
+    for (int i = 0; i < resources.length; i++) {
+      WaterResource resource = resources[i];
+      List<String> coordinates = resource.coordinates.split(', ');
+      LatLng position = LatLng(double.parse(coordinates[0]), double.parse(coordinates[1]));
       yield Marker(
         markerId: MarkerId("Marker_$i"),
-        position: coordinatesGeres[i],
+        position: position,
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DefaultWaterReportScreen()),
+            MaterialPageRoute(builder: (context) => ReportScreen(resource: resource)),
           );
         },
       );
