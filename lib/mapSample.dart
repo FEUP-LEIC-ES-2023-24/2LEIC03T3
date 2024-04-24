@@ -20,16 +20,18 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
-  final Map<PolylineId, Polyline> _polylines = {};
+  //final Map<PolylineId, Polyline> _polylines = {};
   LatLng? _currentP;
 
   @override
   void initState() {
     super.initState();
+    /*
     getLocationUpdates().then(
       (value) => getPolyline()
           .then((coordinates) => generatePolylineFromPoints(coordinates)),
     );
+    */
   }
 
   LatLng calculateCentroid(List<LatLng> points) {
@@ -67,7 +69,7 @@ class _MapPageState extends State<MapPage> {
               zoom: 11,
             ),
             markers: Set<Marker>.of(_generateMarkers()),
-            polylines: Set<Polyline>.of(_polylines.values),
+            //polylines: Set<Polyline>.of(_polylines.values),
           ),
     );
   }
@@ -98,7 +100,6 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  bool _cameraPositionSet = false;
   Future<void> getLocationUpdates() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
@@ -121,15 +122,12 @@ class _MapPageState extends State<MapPage> {
       if (currentLocation.longitude != null && currentLocation.latitude != null) {
         setState(() {
           _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
-          if (!_cameraPositionSet) {
-            cameraToPosition(_currentP!);
-            _cameraPositionSet = true;
-          }
+          cameraToPosition(_currentP!);
         });
       }
     });
   }
-
+  /*
   Future<List<LatLng>> getPolyline() async {
     PolylinePoints polylinePoints = PolylinePoints();
     List<LatLng> polylineCoordinates = [];
@@ -161,4 +159,5 @@ class _MapPageState extends State<MapPage> {
       _polylines[id] = polyline;
     });
   }
+  */
 }
