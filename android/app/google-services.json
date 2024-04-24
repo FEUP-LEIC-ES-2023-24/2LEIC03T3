@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "440203660866",
+    "firebase_url": "https://project-es24-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "project-es24",
+    "storage_bucket": "project-es24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440203660866:android:c1d99b2f54a275bdd827db",
+        "android_client_info": {
+          "package_name": "com.mycompany.projectes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB77fY_APjrPXb1UPZPw5mIg9B03k7J1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
