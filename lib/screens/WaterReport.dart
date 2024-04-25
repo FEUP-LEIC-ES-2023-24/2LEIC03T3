@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+//import 'package:project_es/screens/mapSample.dart';
+import '../firebase_parse.dart';
+import '../mapSample.dart';
 
 class WaterReportModel extends ChangeNotifier {
   // Define the properties and methods for your model here
@@ -573,6 +576,39 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ReportScreen extends StatelessWidget {
+  final WaterResource resource;
+
+  ReportScreen({required this.resource});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(resource.location),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('pH: ${resource.ph}'),
+            Text('Temperature: ${resource.temperature}'),
+            Text('Bacteria Levels: ${resource.bacteriaLevels}'),
+            Text('Turbidity: ${resource.turbidity}'),
+            Text('Oxygen Levels: ${resource.oxygenLevels}'),
+            Text('Total Nitrogen: ${resource.totalNitrogen}'),
+            Text('Total Phosphorus: ${resource.totalPhosphorus}'),
+            Text('Swimming Suitable: ${resource.swimmingSuitable}'),
+            Text('Potable: ${resource.potable}'),
+            Text('Coordinates: ${resource.coordinates}'),
+          ],
         ),
       ),
     );

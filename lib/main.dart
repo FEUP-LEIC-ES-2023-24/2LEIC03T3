@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'mapSample.dart';
 import 'package:provider/provider.dart';
+import 'mapSample.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/WaterReport.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
