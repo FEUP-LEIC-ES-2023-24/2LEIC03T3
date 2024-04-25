@@ -54,8 +54,8 @@ dev_dependencies:
 
 flutter:
    uses-material-design: true
-   #assets:
-    # - assets/images/
+   assets:
+     - assets/custom_marker.png
     # - assets/videos/
     # - assets/audios/
     # - assets/lottie_animations/

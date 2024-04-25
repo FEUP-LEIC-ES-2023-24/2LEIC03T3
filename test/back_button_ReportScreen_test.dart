@@ -10,7 +10,7 @@ void main() {
       home: Navigator(
         pages: [
           MaterialPage(child: MapPage()), // The previous screen
-          MaterialPage(child: DefaultWaterReportScreen()), // The current screen
+          MaterialPage(child: WaterReportScreen()), // The current screen
         ],
         onPopPage: (route, result) => route.didPop(result),
       ),
@@ -22,6 +22,6 @@ void main() {
 
     // Verify that we've returned to the MapPage.
     expect(find.byType(MapPage), findsOneWidget);
-    expect(find.byType(DefaultWaterReportScreen), findsNothing);
+    expect(find.byType(WaterReportScreen), findsNothing);
   });
 }
