@@ -140,21 +140,30 @@ As of External Services, the **Email API** is a vital component in this system. 
 
 ![img](READMEresources/physicalarchitecture.png)
 
-The physical architecture of the DigiWater system consists of the following components:
+The physical architecture of the DigiWater system consists of the following components: 
 
-### Nodes:
-- **Mobile Device:** Represents a smartphone or tablet where the DigiWater mobile application is installed and run.
-- **Server (Computer):** Represents a web server where the DigiWater server API is hosted.
+**Mobile Client:**
+- A Flutter-based app on users' smartphones and tablets.
+- Communicates with the backend server via HTTP/HTTPS. 
 
-### Artifacts:
-- **DigiWater App:** The mobile application installed on users' devices, developed using the Flutter framework.
-- **Server API:** The server-side API responsible for handling requests from the mobile application and interacting with the database.
-- **Database (MySQL):** The MySQL database used to store data about water quality, including analysis reports and location history.
+**Backend Server:**
+- A Node.js server hosting the business logic and REST API.
+- Typically hosted on a cloud platform.
+- Connects to the database and external services. 
 
-### Technologies:
-- **Flutter:** The framework used to develop the DigiWater mobile application.
-- **Node.js:** The runtime environment used to host the DigiWater server API.
-- **MySQL:** The relational database management system used to store data for the DigiWater application.
+**Database Server:**
+- A MySQL database for user data, water quality reports, and audit/logging.
+- Hosted in the cloud or on a dedicated server. 
+
+**External Services:**
+- Third-party services used for additional functionality, such as:
+- Email API for notifications.
+- Google Maps API for geolocation.
+- Water Quality Data API for additional data. 
+
+### Interactions:
+- The Mobile Client communicates with the Backend Server for requests and data retrieval.
+- The Backend Server interacts with the Database Server for data storage and with External Services for additional features.
 
 
 ### Vertical prototype
