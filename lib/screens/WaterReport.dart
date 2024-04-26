@@ -146,18 +146,18 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Text(
-                              '[Tip]',
-                              style: TextStyle(
+                              'Tip: ${getTip(widget.resource)}',
+                              style: const TextStyle(
                                 fontFamily: 'Readex Pro',
                                 letterSpacing: 0,
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                             child: Text(
                               'Report last updated on ${widget.resource.date}',
                               style: const TextStyle(
@@ -672,6 +672,19 @@ Color getGeneralReportColor(WaterResource resource) {
     return Colors.yellow;
   } else {
     return Colors.green;
+  }
+}
+
+
+String getTip(WaterResource resource) {
+  if (resource.potable && resource.swimmingSuitable) {
+    return 'A água é potável e segura para nadar.';
+  } else if (resource.potable && !resource.swimmingSuitable) {
+    return 'A água é potável, mas não é segura para nadar.';
+  } else if (!resource.potable && resource.swimmingSuitable) {
+    return 'A água não é potável, mas é segura para nadar.';
+  } else {
+    return 'A água não é potável e não é segura para nadar.';
   }
 }
 
