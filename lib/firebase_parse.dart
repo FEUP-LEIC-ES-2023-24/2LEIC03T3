@@ -12,6 +12,7 @@ class WaterResource {
   final bool swimmingSuitable;
   final bool potable;
   final String coordinates;
+  final String date;
 
   WaterResource({
     required this.location,
@@ -25,6 +26,8 @@ class WaterResource {
     required this.swimmingSuitable,
     required this.potable,
     required this.coordinates,
+    required this.date,
+
   });
 }
 
@@ -45,6 +48,7 @@ Future<List<WaterResource>> getAllWaterResources() async {
       swimmingSuitable: data['swimming_suitable'],
       potable: data['potable'],
       coordinates: data['coordinates'],
+      date: data['last_change'].toDate().toString(),
     );
   }).toList();
 }

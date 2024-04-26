@@ -99,8 +99,7 @@ class _MapPageState extends State<MapPage> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const WaterReportScreen()),
-            //MaterialPageRoute(builder: (context) => ReportScreen(resource: resource)),
+            MaterialPageRoute(builder: (context) => WaterReportScreen(resource: resource)),
           );
         },
       );
