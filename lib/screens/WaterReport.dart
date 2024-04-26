@@ -614,9 +614,9 @@ Color getOxygenColor(String oxygen) {
 }
 
 Color getTurbidityColor(String turbidity) {
-  if (turbidity == 'Baixa') {
+  if (turbidity == 'Low') {
     return Colors.green;
-  } else if (turbidity == 'Moderada') {
+  } else if (turbidity == 'Moderate') {
     return Colors.yellow;
   } else {
     return Colors.red;
@@ -624,9 +624,9 @@ Color getTurbidityColor(String turbidity) {
 }
 
 Color getBacteriaColor(String bacteria) {
-  if (bacteria == 'Baixos') {
+  if (bacteria == 'Low') {
     return Colors.green;
-  } else if (bacteria == 'Moderados') {
+  } else if (bacteria == 'Moderate') {
     return Colors.yellow;
   } else {
     return Colors.red;
@@ -675,16 +675,15 @@ Color getGeneralReportColor(WaterResource resource) {
   }
 }
 
-
 String getTip(WaterResource resource) {
   if (resource.potable && resource.swimmingSuitable) {
-    return 'A água é potável e segura para nadar.';
+    return 'Safe to drink and swim.';
   } else if (resource.potable && !resource.swimmingSuitable) {
-    return 'A água é potável, mas não é segura para nadar.';
+    return 'Safe to drink but unsafe to swim.';
   } else if (!resource.potable && resource.swimmingSuitable) {
-    return 'A água não é potável, mas é segura para nadar.';
+    return 'Unsafe to drink but safe to swim.';
   } else {
-    return 'A água não é potável e não é segura para nadar.';
+    return 'Unsafe to drink and swim.';
   }
 }
 

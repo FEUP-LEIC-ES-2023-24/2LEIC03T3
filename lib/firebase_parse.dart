@@ -37,7 +37,7 @@ Future<List<WaterResource>> getAllWaterResources() async {
   return querySnapshot.docs.map((doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return WaterResource(
-      location: doc.id,
+      location: data['location'],
       ph: data['ph'],
       temperature: data['temperature'],
       bacteriaLevels: data['bacteria_levels'],
