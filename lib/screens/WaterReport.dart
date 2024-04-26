@@ -124,9 +124,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                           Container(
                             width: 209,
                             height: 70,
-                            decoration: const BoxDecoration(
-                              color: Colors.yellow, // replace with your color
-                              borderRadius: BorderRadius.only(
+                            decoration: BoxDecoration(
+                              color: getGeneralReportColor(widget.resource),
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15),
                                 topLeft: Radius.circular(14),
@@ -190,10 +190,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                   Container(
                                     width: 100,
                                     height: 100,
-                                    decoration: const BoxDecoration(
-                                      color:
-                                          Colors.green,
-                                      borderRadius: BorderRadius.only(
+                                    decoration:  BoxDecoration(
+                                      color: getPhColor(widget.resource.ph ?? 0),
+                                      borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15),
                                         topLeft: Radius.circular(15),
@@ -232,10 +231,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                   Container(
                                     width: 100,
                                     height: 100,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       color:
-                                          Colors.green,
-                                      borderRadius: BorderRadius.only(
+                                          getTempColor(widget.resource.temperature ?? 0),
+                                      borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15),
                                         topLeft: Radius.circular(15),
@@ -286,9 +285,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.yellow,
-                                        borderRadius: BorderRadius.only(
+                                      decoration: BoxDecoration(
+                                        color: getOxygenColor(widget.resource.oxygenLevels),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -330,10 +329,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         color:
-                                            Colors.red,
-                                        borderRadius: BorderRadius.only(
+                                            getTurbidityColor(widget.resource.turbidity),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -385,9 +384,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.only(
+                                      decoration: BoxDecoration(
+                                        color: getBacteriaColor(widget.resource.bacteriaLevels),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -403,7 +402,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             alignment:
                                                 AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'SST',
+                                            'Microorgs',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 22,
@@ -428,9 +427,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.yellow,
-                                        borderRadius: BorderRadius.only(
+                                      decoration: BoxDecoration(
+                                        color: getNitrogenColor(widget.resource.totalNitrogen),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -446,7 +445,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             alignment:
                                                 AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'SDT',
+                                            'Nitrogen',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 22,
@@ -482,9 +481,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.only(
+                                      decoration: BoxDecoration(
+                                        color: getPhosphorusColor(widget.resource.totalPhosphorus),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -500,7 +499,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             alignment:
                                                 AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Nutrients',
+                                            'Phosp',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 22,
@@ -525,9 +524,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFF5C4033),
-                                        borderRadius: BorderRadius.only(
+                                      decoration: BoxDecoration(
+                                        color: getBacteriaColor(widget.resource.bacteriaLevels),
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
                                           topLeft: Radius.circular(15),
@@ -583,4 +582,111 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
     );
   }
 }
+
+Color getPhColor(double ph) {
+  if (ph < 6.9 || ph > 7.2) {
+    return Colors.yellow;
+  } else if (ph >= 6.9 && ph <= 7.2) {
+    return Colors.green;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getTempColor(double temp) {
+  if (temp < 20 || temp > 25) {
+    return Colors.yellow;
+  } else if (temp >= 20 && temp <= 25) {
+    return Colors.green;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getOxygenColor(String oxygen) {
+  if (oxygen == '>6') {
+    return Colors.green;
+  } else if (oxygen == '4-6') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getTurbidityColor(String turbidity) {
+  if (turbidity == 'Baixa') {
+    return Colors.green;
+  } else if (turbidity == 'Moderada') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getBacteriaColor(String bacteria) {
+  if (bacteria == 'Baixos') {
+    return Colors.green;
+  } else if (bacteria == 'Moderados') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getNitrogenColor(String nitrogen) {
+  if (nitrogen == '<0.5') {
+    return Colors.green;
+  } else if (nitrogen == '0.5-1') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+
+}
+
+Color getPhosphorusColor(String phosphorus) {
+  if (phosphorus == '<0.1') {
+    return Colors.green;
+  } else if (phosphorus == '0.1-0.3') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getGeneralReportColor(WaterResource resource) {
+  if (getPhColor(resource.ph ?? 0) == Colors.red ||
+      getTempColor(resource.temperature ?? 0) == Colors.red ||
+      getOxygenColor(resource.oxygenLevels) == Colors.red ||
+      getTurbidityColor(resource.turbidity) == Colors.red ||
+      getBacteriaColor(resource.bacteriaLevels) == Colors.red ||
+      getNitrogenColor(resource.totalNitrogen) == Colors.red ||
+      getPhosphorusColor(resource.totalPhosphorus) == Colors.red) {
+    return Colors.red;
+  } else if (getPhColor(resource.ph ?? 0) == Colors.yellow ||
+      getOxygenColor(resource.oxygenLevels) == Colors.yellow ||
+      getTurbidityColor(resource.turbidity) == Colors.yellow ||
+      getBacteriaColor(resource.bacteriaLevels) == Colors.yellow ||
+      getNitrogenColor(resource.totalNitrogen) == Colors.yellow ||
+      getPhosphorusColor(resource.totalPhosphorus) == Colors.yellow) {
+    return Colors.yellow;
+  } else {
+    return Colors.green;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
