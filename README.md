@@ -126,7 +126,7 @@ In this section you should start by briefly describing the overall components of
 
 ### Logical architecture 
 
-![img](READMEresources/Archlog.png) 
+![img](READMEresources/logicalarchitecture2.png) 
 
 **DigiWater UI Package**: This package represents the components responsible for the presentation layer of the system. 
 
@@ -138,7 +138,7 @@ As of External Services, the **Email API** is a vital component in this system. 
 
 ### Physical architecture
 
-![img](READMEresources/deployment_diagram.png)
+![img](READMEresources/physicalarchitecture.png)
 
 The physical architecture of the DigiWater system consists of the following components:
 
