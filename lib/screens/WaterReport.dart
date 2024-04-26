@@ -52,7 +52,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
           automaticallyImplyLeading: false,
           leading: IconButton(
             icon: const Icon(
-              Icons.arrow_back,
+              Icons.arrow_back_rounded,
               color: Colors.white,
               size: 24,
             ),
@@ -94,7 +94,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                         icon: const Icon(
                           Icons.location_pin,
                           color: Colors.black, // replace with your color
-                          size: 25,
+                          size: 27,
                         ),
                         onPressed: () {
                           print('IconButton pressed ...');
@@ -105,9 +105,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                       widget.resource.location,
                       style: const TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 14,
+                        fontSize: 17,
                         letterSpacing: 0,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -133,15 +133,16 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                 topRight: Radius.circular(15),
                               ),
                             ),
-                            child: const Align(
-                              alignment: AlignmentDirectional(0, 0),
+                            child: Align(
+                              alignment: const AlignmentDirectional(0, 0),
                               child: Text(
-                                '[General Report]',
+                                widget.resource.generalreport,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22,
+                                  fontSize: 27,
                                   letterSpacing: 0,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -151,8 +152,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                             child: Text(
                               'Tip: ${getTip(widget.resource)}',
                               style: const TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Poppins',
                                 letterSpacing: 0,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500
                               ),
                             ),
                           ),
@@ -161,8 +164,9 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                             child: Text(
                               'Report last updated on ${widget.resource.date}',
                               style: const TextStyle(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Poppins',
                                 letterSpacing: 0,
+                                fontSize: 15,
                               ),
                             ),
                           ),
@@ -209,7 +213,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             'pH',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22,
+                                  fontSize: 27,
                                   letterSpacing: 0,
                                 ),
                                           ),
@@ -253,7 +257,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             'Temp',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22,
+                                  fontSize: 27,
                                   letterSpacing: 0,
                                 ),
                                           ),
@@ -351,7 +355,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             'Turbidity',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22,
+                                  fontSize: 23,
                                   letterSpacing: 0,
                                 ),
                                           ),
@@ -499,10 +503,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             alignment:
                                                 AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Phosp',
+                                            'Phosph',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 22,
+                                  fontSize: 26,
                                   letterSpacing: 0,
                                 ),
                                           ),
@@ -525,7 +529,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       width: 100,
                                       height: 100,
                                       decoration: BoxDecoration(
-                                        color: getBacteriaColor(widget.resource.bacteriaLevels),
+                                        color: getConductivityColor(widget.resource.conductivity),
                                         borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
@@ -542,10 +546,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                             alignment:
                                                 AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Microorgs',
+                                            'Conductiv',
                                             style: TextStyle(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 20,
+                                  fontSize: 22,
                                   letterSpacing: 0,
                                 ),
                                           ),
@@ -553,7 +557,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                         Align(
                                           alignment: const AlignmentDirectional(0, 1),
                                           child: Text(
-                                            widget.resource.bacteriaLevels,
+                                            widget.resource.conductivity,
                                             style: const TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 18,
@@ -648,6 +652,16 @@ Color getPhosphorusColor(String phosphorus) {
   if (phosphorus == '<0.1') {
     return Colors.green;
   } else if (phosphorus == '0.1-0.3') {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getConductivityColor(String conductivity) {
+  if (conductivity == 'Low') {
+    return Colors.green;
+  } else if (conductivity == 'Moderate') {
     return Colors.yellow;
   } else {
     return Colors.red;

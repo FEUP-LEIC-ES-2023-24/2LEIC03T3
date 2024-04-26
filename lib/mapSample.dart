@@ -67,6 +67,7 @@ class _MapPageState extends State<MapPage> {
                   color: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
+                  fontFamily: 'Poppins',
                 ),
               ),
               backgroundColor: const Color(0xFF5bb5da),

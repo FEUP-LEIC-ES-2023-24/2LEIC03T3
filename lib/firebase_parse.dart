@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class WaterResource {
   final String location;
@@ -13,6 +14,8 @@ class WaterResource {
   final bool potable;
   final String coordinates;
   final String date;
+  final String generalreport;
+  final String conductivity;
 
   WaterResource({
     required this.location,
@@ -27,7 +30,8 @@ class WaterResource {
     required this.potable,
     required this.coordinates,
     required this.date,
-
+    required this.generalreport,
+    required this.conductivity,
   });
 }
 
@@ -48,7 +52,9 @@ Future<List<WaterResource>> getAllWaterResources() async {
       swimmingSuitable: data['swimming_suitable'],
       potable: data['potable'],
       coordinates: data['coordinates'],
-      date: data['last_change'].toDate().toString(),
+      date: DateFormat('yyyy-MM-dd HH:mm:ss').format(data['last_change'].toDate()),
+      generalreport: data['general_report'],
+      conductivity: data['conductivity'],
     );
   }).toList();
 }
