@@ -156,7 +156,7 @@ The physical architecture of the DigiWater system consists of the following comp
 - Hosted in the cloud or on a dedicated server. 
 
 **External Services:**
-- Third-party services used for additional functionality, such as:
+Third-party services used for additional functionality, such as:
 - Email API for notifications.
 - Google Maps API for geolocation.
 - Water Quality Data API for additional data. 
