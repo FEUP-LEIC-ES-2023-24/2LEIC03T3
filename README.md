@@ -206,3 +206,13 @@ We are very happy and proud about this Sprint 1.
 - Scrum board at the end of the Sprint 2 Planning:
 
 ![img](READMEresources/sprint2planning.png)
+
+- Scrum board after Sprint 2:
+
+
+
+- Notes on the Sprint Review:
+
+
+
+- Notes on the Sprint Retrospective:

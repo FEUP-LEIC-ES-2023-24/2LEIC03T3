@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.2] - 2024-04-30
+
+### Added
+- Completed PBI #2, #3, #4 and #5: Added new features: Map with pins with colors; Water Quality Report Screens with actual data (from underlying database) and final design; Tip and up-to-date feature implemented. This feature allows users to access a Google Maps interface and click on different colored pins (in regard to color of general water report) over Gerês that when clicked open the specific water quality report screen for that location with all the necessary data.
+
 ## [1.0.1] - 2024-04-15
 
 ### Added
