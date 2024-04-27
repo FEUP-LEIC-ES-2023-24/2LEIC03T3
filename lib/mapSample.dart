@@ -97,6 +97,7 @@ class _MapPageState extends State<MapPage> {
       yield Marker(
         markerId: MarkerId("Marker_$i"),
         position: position,
+        icon: getMarkerIcon(resource),
         onTap: () {
           Navigator.push(
             context,

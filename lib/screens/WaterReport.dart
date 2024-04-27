@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 //import 'package:project_es/screens/mapSample.dart';
 import '../firebase_parse.dart';
@@ -701,6 +702,15 @@ String getTip(WaterResource resource) {
   }
 }
 
+BitmapDescriptor getMarkerIcon(WaterResource resource) {
+  if (getGeneralReportColor(resource) == Colors.red) {
+    return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+  } else if (getGeneralReportColor(resource) == Colors.yellow) {
+    return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow);
+  } else {
+    return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
+  }
+}
 
 
 
