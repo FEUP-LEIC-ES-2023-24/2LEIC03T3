@@ -18,7 +18,7 @@ class WaterReportScreen extends StatefulWidget {
 
   WaterReportScreen({required this.resource, Key? key}) : super(key: key);
 
-@override
+  @override
   _WaterReportScreenState createState() => _WaterReportScreenState();
 }
 
@@ -66,12 +66,12 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
             child: Text(
               'Water Quality Report',
               style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 22,
-                    letterSpacing: 0,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white
-                  ),
+                  fontFamily: 'Poppins',
+                  fontSize: 22,
+                  letterSpacing: 0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white
+              ),
             ),
           ),
           actions: [],
@@ -82,6 +82,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
           top: true,
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+            child: Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -153,10 +154,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                             child: Text(
                               'Tip: ${getTip(widget.resource)}',
                               style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                letterSpacing: 0,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500
+                                  fontFamily: 'Poppins',
+                                  letterSpacing: 0,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500
                               ),
                             ),
                           ),
@@ -190,7 +191,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
                                     width: 100,
@@ -213,21 +214,21 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                           child: Text(
                                             'pH',
                                             style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 27,
-                                  letterSpacing: 0,
-                                ),
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 27,
+                                              letterSpacing: 0,
+                                            ),
                                           ),
                                         ),
                                         Align(
                                           alignment: const AlignmentDirectional(0, 1),
                                           child: Text(
-                                              (widget.resource.ph ?? 0).toString(),
+                                            (widget.resource.ph ?? 0).toString(),
                                             style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18,
+                                              letterSpacing: 0,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -238,7 +239,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     height: 100,
                                     decoration: BoxDecoration(
                                       color:
-                                          getTempColor(widget.resource.temperature ?? 0),
+                                      getTempColor(widget.resource.temperature ?? 0),
                                       borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15),
@@ -249,18 +250,18 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                     child:  Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                       children: [
                                         const Align(
                                           alignment:
-                                              AlignmentDirectional(0, -1),
+                                          AlignmentDirectional(0, -1),
                                           child: Text(
                                             'Temp',
                                             style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 27,
-                                  letterSpacing: 0,
-                                ),
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 27,
+                                              letterSpacing: 0,
+                                            ),
                                           ),
                                         ),
                                         Align(
@@ -268,10 +269,10 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                           child: Text(
                                             (widget.resource.temperature ?? 0).toString(),
                                             style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18,
+                                              letterSpacing: 0,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -281,11 +282,11 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
                                       width: 100,
@@ -302,31 +303,31 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
-                                         const Align(
+                                          const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Dissolved\nOX',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 21,
-                                  letterSpacing: 0,
-                                ),
+                                              'Dissolved\nOX',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 21,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.oxygenLevels,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.oxygenLevels,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -336,7 +337,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       height: 100,
                                       decoration: BoxDecoration(
                                         color:
-                                            getTurbidityColor(widget.resource.turbidity),
+                                        getTurbidityColor(widget.resource.turbidity),
                                         borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(15),
                                           bottomRight: Radius.circular(15),
@@ -347,30 +348,30 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child:  Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Turbidity',
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 23,
-                                  letterSpacing: 0,
-                                ),
+                                              'Turbidity',
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 23,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.turbidity,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.turbidity,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -380,11 +381,11 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
                                       width: 100,
@@ -401,30 +402,30 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Microorgs',
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 22,
-                                  letterSpacing: 0,
-                                ),
+                                              'Microorgs',
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 22,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.bacteriaLevels,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.bacteriaLevels,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -444,30 +445,30 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Nitrogen',
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 22,
-                                  letterSpacing: 0,
-                                ),
+                                              'Nitrogen',
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 22,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.totalNitrogen,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.totalNitrogen,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -477,11 +478,11 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
                                       width: 100,
@@ -498,30 +499,30 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child:  Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Phosph',
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 26,
-                                  letterSpacing: 0,
-                                ),
+                                              'Phosph',
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 26,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.totalPhosphorus,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.totalPhosphorus,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -541,30 +542,30 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           const Align(
                                             alignment:
-                                                AlignmentDirectional(0, -1),
+                                            AlignmentDirectional(0, -1),
                                             child: Text(
-                                            'Conductiv',
-                                            style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 22,
-                                  letterSpacing: 0,
-                                ),
+                                              'Conductiv',
+                                              style: TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 22,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            widget.resource.conductivity,
-                                            style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18,
-                                  letterSpacing: 0,
-                                ),
-                                          ),
+                                          Align(
+                                            alignment: const AlignmentDirectional(0, 1),
+                                            child: Text(
+                                              widget.resource.conductivity,
+                                              style: const TextStyle(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18,
+                                                letterSpacing: 0,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -580,6 +581,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                   ),
                 ),
               ],
+            ),
             ),
           ),
         ),
@@ -711,7 +713,6 @@ BitmapDescriptor getMarkerIcon(WaterResource resource) {
     return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
   }
 }
-
 
 
 
