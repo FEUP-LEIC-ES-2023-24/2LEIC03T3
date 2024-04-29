@@ -5,10 +5,10 @@ import 'package:project_es/consts.dart';
 import 'package:project_es/mapSample.dart';
 
 void main() {
-
-  testWidgets('GoogleMap widget should be created', (WidgetTester tester) async {
+  testWidgets('GoogleMap widget should be created',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MaterialApp(home: MapPage()));
+    await tester.pumpWidget(const MaterialApp(home: MapPage()));
 
     // Verify that the GoogleMap widget is created.
     expect(find.byType(GoogleMap), findsOneWidget);
@@ -25,7 +25,7 @@ void main() {
 
 Iterable<Marker> _generateMarkers(List<LatLng> coordinates) {
   return coordinates.map((coordinate) {
-    return Marker(
+    return const Marker(
       markerId: MarkerId(coordinate.toString()),
       position: coordinate,
     );
