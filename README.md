@@ -209,10 +209,30 @@ We are very happy and proud about this Sprint 1.
 
 - Scrum board after Sprint 2:
 
+![img](READMEresources/scrumboardaftersprint2.png)
 
+- Notes on the Sprint Review:
+
+Demo of the product increment was successfully done on android phone emulator and release of the product increment was created in Github.
+Goals of the Sprint 2 were accomplished and delivered features add value to the end-user. Product backlog was adapted accordingly, with some user stories being deleted and others updated and added after talking with Product Owner.
+
+- Notes on the Sprint Retrospective:
+
+We implemented what we had planned and are satisfied with what we did and how we worked as a team. What can be improved is the creation of acceptance, unit and integration tests to verify the product increment's correct operation.
+
+### Sprint 3
+
+- Scrum board at the end of the Sprint 3 Planning:
+
+![img](READMEresources/sprint3planning.png)
+
+- Scrum board after Sprint 3:
+
+![img](READMEresources/)
 
 - Notes on the Sprint Review:
 
 
 
 - Notes on the Sprint Retrospective:
+
