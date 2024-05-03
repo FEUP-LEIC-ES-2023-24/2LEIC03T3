@@ -82,3 +82,4 @@ class DatabaseHelper {
     return rowsAffected;
   }
 }
+
