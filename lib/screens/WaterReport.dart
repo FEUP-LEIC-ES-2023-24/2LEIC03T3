@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 //import 'package:project_es/screens/mapSample.dart';
+import '../DatabaseHelper.dart';
 import '../firebase_parse.dart';
 import '../mapSample.dart';
 
 class WaterReportModel extends ChangeNotifier {
-  // Define the properties and methods for your model here
   final unfocusNode = FocusNode();
   void dispose() {
     unfocusNode.dispose();
@@ -22,7 +22,36 @@ class WaterReportScreen extends StatefulWidget {
   _WaterReportScreenState createState() => _WaterReportScreenState();
 }
 
+
+class WaterReport extends StatefulWidget {
+  @override
+  _WaterReportState createState() => _WaterReportState();
+}
+
+class _WaterReportState extends State<WaterReport> {
+  bool isBookmarked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(isBookmarked ? Icons.star : Icons.star_border),
+      onPressed: () {
+        setState(() {
+          isBookmarked = !isBookmarked;
+        });
+      },
+    );
+  }
+
+  void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
+  }
+}
+
 class _WaterReportScreenState extends State<WaterReportScreen> {
+  bool isBookmarked = false;
   late WaterReportModel _model;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -30,13 +59,47 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
   void initState() {
     super.initState();
     _model = Provider.of<WaterReportModel>(context, listen: false);
-    // Initialize your model here if needed
+    _checkIfBookmarked();
   }
 
   @override
   void dispose() {
     _model.dispose();
     super.dispose();
+  }
+
+  Future<void> _checkIfBookmarked() async {
+    List<Map<String, dynamic>> rows = await DatabaseHelper.instance.queryAllRows();
+    for (var row in rows) {
+      if (row[DatabaseHelper.columnCoordinates] == widget.resource.coordinates) {
+        setState(() {
+          isBookmarked = true;
+        });
+        break;
+      }
+    }
+  }
+
+
+  Future<void> _toggleBookmark() async {
+    if (isBookmarked) {
+      List<Map<String, dynamic>> rows = await DatabaseHelper.instance.queryAllRows();
+      for (var row in rows) {
+        if (row[DatabaseHelper.columnCoordinates] == widget.resource.coordinates) {
+          await DatabaseHelper.instance.delete(row[DatabaseHelper.columnId]);
+          break;
+        }
+      }
+    } else {
+      Map<String, dynamic> row = {
+        DatabaseHelper.columnLocation: widget.resource.location,
+        DatabaseHelper.columnCoordinates: widget.resource.coordinates,
+      };
+      await DatabaseHelper.instance.insert(row);
+    }
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
   }
 
   @override
@@ -58,23 +121,39 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
               size: 24,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+
+              Navigator.pop(context, 'update');
             },
           ),
+          actions: <Widget>[
+            Padding(
+              //alinhar para a esquerda bastante
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 30, 0),
+              child: IconButton(
+                icon: Icon(
+                  isBookmarked ? Icons.star : Icons.star_border,
+                  color: Colors.white,
+                  size: 36,
+                ),
+                onPressed: () async {
+                  await _toggleBookmark();
+                },
+              ),
+            ),
+          ],
           title: const Align(
-            alignment: AlignmentDirectional(-1, 0),
+            alignment: AlignmentDirectional(1, 0),
             child: Text(
               'Water Quality Report',
               style: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 22,
+                  fontSize: 25,
                   letterSpacing: 0,
                   fontWeight: FontWeight.w600,
                   color: Colors.white
               ),
             ),
           ),
-          actions: [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -95,7 +174,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                       child: IconButton(
                         icon: const Icon(
                           Icons.location_pin,
-                          color: Colors.black, // replace with your color
+                          color: Colors.black,
                           size: 27,
                         ),
                         onPressed: () {
@@ -713,6 +792,8 @@ BitmapDescriptor getMarkerIcon(WaterResource resource) {
     return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
   }
 }
+
+
 
 
 

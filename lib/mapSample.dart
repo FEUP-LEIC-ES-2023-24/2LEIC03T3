@@ -6,6 +6,7 @@ import 'package:location/location.dart';
 import 'consts.dart';
 import 'firebase_parse.dart';
 import 'screens/WaterReport.dart';
+import 'screens/Bookmarks.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -61,15 +62,29 @@ class _MapPageState extends State<MapPage> {
           List<WaterResource> resources = snapshot.data!;
           return Scaffold(
             appBar: AppBar(
+
+              leading: IconButton(
+                padding: const EdgeInsets.only(left: 30),
+                icon: const Icon(Icons.star, color: Colors.white, size: 30),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BookmarkScreen(),
+                    ),
+                  );
+                },
+              ),
               title: const Text(
-                'Map',
+                'DigiWater',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Poppins',
                 ),
               ),
+              centerTitle: true,
               backgroundColor: const Color(0xFF5bb5da),
             ),
             body: GoogleMap(
