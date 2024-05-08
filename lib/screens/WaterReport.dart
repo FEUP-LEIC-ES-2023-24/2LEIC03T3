@@ -118,7 +118,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
             icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
-              size: 24,
+              size: 30,
             ),
             onPressed: () async {
 
@@ -133,7 +133,7 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                 icon: Icon(
                   isBookmarked ? Icons.star : Icons.star_border,
                   color: Colors.white,
-                  size: 36,
+                  size: 30,
                 ),
                 onPressed: () async {
                   await _toggleBookmark();

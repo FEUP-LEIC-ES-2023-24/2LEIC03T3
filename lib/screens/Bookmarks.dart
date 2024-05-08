@@ -41,10 +41,16 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bookmarks'),
+        backgroundColor: const Color(0xFF5BB5DA),
+        title: const Text('Bookmarked Locations', style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 25,
+                  letterSpacing: 0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white)),
         leading: _isSelecting
             ? IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 30),
           onPressed: _disableSelection,
         )
             : null,
@@ -64,7 +70,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
             : [],
       ),
       body: _bookmarks.isEmpty
-          ? Center(child: Text('No bookmarks'))
+          ? const Center(child: Text('No bookmarks', style: TextStyle(fontFamily: 'Poppins')))
           : ListView.builder(
         itemCount: _bookmarks.length,
         itemBuilder: (context, index) {

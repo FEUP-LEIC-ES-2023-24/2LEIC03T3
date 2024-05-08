@@ -34,6 +34,7 @@ class _MapPageState extends State<MapPage> {
           .then((coordinates) => generatePolylineFromPoints(coordinates)),
     );
     */
+    getLocationUpdates();
   }
 
   LatLng calculateCentroid(List<LatLng> points) {
@@ -97,6 +98,7 @@ class _MapPageState extends State<MapPage> {
                 zoom: 11,
               ),
               markers: Set<Marker>.of(_generateMarkers(resources)),
+              myLocationEnabled: true,
             ),
           );
         }
@@ -135,32 +137,29 @@ class _MapPageState extends State<MapPage> {
   }
 
   Future<void> getLocationUpdates() async {
-    bool serviceEnabled;
-    PermissionStatus permissionGranted;
-    serviceEnabled = await _locationController.serviceEnabled();
+  bool serviceEnabled;
+  PermissionStatus permissionGranted;
+  serviceEnabled = await _locationController.serviceEnabled();
 
-    if (serviceEnabled) {
-      serviceEnabled = await _locationController.requestService();
-    } else {
+  if (!serviceEnabled) {
+    serviceEnabled = await _locationController.requestService();
+    if (!serviceEnabled) {
       return;
     }
-
-    permissionGranted = await _locationController.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await _locationController.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-    _locationController.onLocationChanged.listen((LocationData currentLocation) {
-      if (currentLocation.longitude != null && currentLocation.latitude != null) {
-        setState(() {
-          _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
-          cameraToPosition(_currentP!);
-        });
-      }
-    });
   }
+
+  permissionGranted = await _locationController.hasPermission();
+  if (permissionGranted == PermissionStatus.denied) {
+    permissionGranted = await _locationController.requestPermission();
+    if (permissionGranted != PermissionStatus.granted) {
+      return;
+    }
+  }
+
+  // If we reach here, it means the location service is enabled and permission is granted
+  // Call setState to trigger a rebuild of your widget
+  setState(() {});
+}
   /*
   Future<List<LatLng>> getPolyline() async {
     PolylinePoints polylinePoints = PolylinePoints();
