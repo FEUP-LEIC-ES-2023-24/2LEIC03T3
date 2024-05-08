@@ -14,16 +14,8 @@ class BookmarkScreen extends StatefulWidget {
 
 class _BookmarkScreenState extends State<BookmarkScreen> {
   List<Map<String, dynamic>> _bookmarks = [];
-  List<Map<String, dynamic>> _selectedBookmarks = [];
+  List<int> _selectedBookmarkIndexes = [];
   bool _isSelecting = false;
-
-  // função para desativar o modo de seleção
-  void _disableSelection() {
-    setState(() {
-      _isSelecting = false;
-      _selectedBookmarks.clear(); // desmarca todos os bookmarks selecionados
-    });
-  }
 
   @override
   void initState() {
@@ -37,37 +29,53 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
       _bookmarks = rows;
     });
   }
+
+  void _toggleBookmarkSelection(int index) {
+    setState(() {
+      if (_selectedBookmarkIndexes.contains(index)) {
+        _selectedBookmarkIndexes.remove(index);
+        if (_selectedBookmarkIndexes.isEmpty) {
+          _isSelecting = false;
+        }
+      } else {
+        _selectedBookmarkIndexes.add(index);
+        _isSelecting = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF5BB5DA),
-        title: const Text('Bookmarked Locations', style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 25,
-                  letterSpacing: 0,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white)),
-        leading: _isSelecting
-            ? IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 30),
-          onPressed: _disableSelection,
-        )
-            : null,
+        title: const Text(
+          'Bookmarked Locations',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 25,
+            letterSpacing: 0,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
         actions: _isSelecting
-            ? <Widget>[
+            ? [
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: () async {
-              for (var bookmark in _selectedBookmarks) {
-                await DatabaseHelper.instance.delete(bookmark[DatabaseHelper.columnId]);
+              for (var index in _selectedBookmarkIndexes) {
+                await DatabaseHelper.instance.delete(_bookmarks[index][DatabaseHelper.columnId]);
               }
               _loadBookmarks();
-              _disableSelection();
+              setState(() {
+                _selectedBookmarkIndexes.clear();
+                _isSelecting = false;
+              });
             },
           ),
         ]
-            : [],
+            : null,
       ),
       body: _bookmarks.isEmpty
           ? const Center(child: Text('No bookmarks', style: TextStyle(fontFamily: 'Poppins')))
@@ -75,7 +83,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
         itemCount: _bookmarks.length,
         itemBuilder: (context, index) {
           Map<String, dynamic> bookmark = _bookmarks[index];
-          bool isSelected = _selectedBookmarks.contains(bookmark);
+          bool isSelected = _selectedBookmarkIndexes.contains(index);
           return FutureBuilder<WaterResource>(
             future: getWaterResource(bookmark[DatabaseHelper.columnCoordinates]),
             builder: (context, snapshot) {
@@ -86,7 +94,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               } else {
                 WaterResource resource = snapshot.data!;
                 return ListTile(
-                  leading: isSelected ? Icon(Icons.circle, color: Colors.grey) : null, // adiciona um círculo cinza quando selecionado, falta aqui qualquer coisa no bool
+                  leading: isSelected ? Icon(Icons.check_circle, color: Colors.grey) : null,
                   title: Text(bookmark[DatabaseHelper.columnLocation]),
                   subtitle: Text(bookmark[DatabaseHelper.columnCoordinates]),
                   trailing: Row(
@@ -110,32 +118,22 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                         )
                     ],
                   ),
-                  onTap: () async {
-                    if (_isSelecting) {
-                      setState(() {
-                        if (isSelected) {
-                          _selectedBookmarks.remove(bookmark);
-                        } else {
-                          _selectedBookmarks.add(bookmark);
-                        }
-                      });
-                    } else {
-                      final result = await Navigator.push(
+                  onTap: () {
+                    if (!_isSelecting) {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => WaterReportScreen(resource: resource),
+                          builder: (context) => WaterReportScreen(
+                            resource: resource,
+                          ),
                         ),
                       );
-                      if (result == 'update') {
-                        _loadBookmarks();
-                      }
+                    } else {
+                      _toggleBookmarkSelection(index);
                     }
                   },
                   onLongPress: () {
-                    setState(() {
-                      _isSelecting = true;
-                      _selectedBookmarks.add(bookmark);
-                    });
+                    _toggleBookmarkSelection(index);
                   },
                 );
               }
