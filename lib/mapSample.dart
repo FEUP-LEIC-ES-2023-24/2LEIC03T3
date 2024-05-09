@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
+import 'screens/ReportCreation.dart';
 import 'consts.dart';
 import 'firebase_parse.dart';
 import 'screens/WaterReport.dart';
 import 'screens/Bookmarks.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -22,18 +23,9 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
-  //final Map<PolylineId, Polyline> _polylines = {};
-  LatLng? _currentP;
-
   @override
   void initState() {
     super.initState();
-    /*
-    getLocationUpdates().then(
-      (value) => getPolyline()
-          .then((coordinates) => generatePolylineFromPoints(coordinates)),
-    );
-    */
     getLocationUpdates();
   }
 
@@ -63,7 +55,6 @@ class _MapPageState extends State<MapPage> {
           List<WaterResource> resources = snapshot.data!;
           return Scaffold(
             appBar: AppBar(
-
               leading: IconButton(
                 padding: const EdgeInsets.only(left: 30),
                 icon: const Icon(Icons.star, color: Colors.white, size: 30),
@@ -87,6 +78,20 @@ class _MapPageState extends State<MapPage> {
               ),
               centerTitle: true,
               backgroundColor: const Color(0xFF5bb5da),
+              actions: <Widget>[
+                IconButton(
+                  padding: const EdgeInsets.only(right: 30),
+                  icon: const FaIcon(FontAwesomeIcons.mapMarkedAlt, color: Colors.white, size: 30),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WaterReportForm(),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
             body: GoogleMap(
               onMapCreated: (controller) => _mapController.complete(controller),
@@ -160,37 +165,5 @@ class _MapPageState extends State<MapPage> {
   // Call setState to trigger a rebuild of your widget
   setState(() {});
 }
-  /*
-  Future<List<LatLng>> getPolyline() async {
-    PolylinePoints polylinePoints = PolylinePoints();
-    List<LatLng> polylineCoordinates = [];
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      GOOGLE_MAPS_API_KEY,
-      PointLatLng(coordinatesGeres[1].latitude, coordinatesGeres[1].longitude),
-      PointLatLng(coordinatesGeres[2].latitude, coordinatesGeres[2].longitude),
-      travelMode: TravelMode.walking,
-    );
-    if (result.points.isNotEmpty) {
-      for (var point in result.points) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      }
-    } else {
-      print(result.errorMessage);
-    }
-    return polylineCoordinates;
-  }
-
-  void generatePolylineFromPoints(List<LatLng> polylineCoordinates) async {
-    PolylineId id = const PolylineId("poly");
-    Polyline polyline = Polyline(
-      polylineId: id,
-      color: Colors.black,
-      points: polylineCoordinates,
-      width: 3,
-    );
-    setState(() {
-      _polylines[id] = polyline;
-    });
-  }
-  */
+  
 }

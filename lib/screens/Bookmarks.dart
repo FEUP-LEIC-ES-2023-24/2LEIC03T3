@@ -49,6 +49,12 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF5BB5DA),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 30),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           'Bookmarked Locations',
           style: TextStyle(
@@ -94,8 +100,8 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               } else {
                 WaterResource resource = snapshot.data!;
                 return ListTile(
-                  leading: isSelected ? Icon(Icons.check_circle, color: Colors.grey) : null,
-                  title: Text(bookmark[DatabaseHelper.columnLocation]),
+                  leading: isSelected ? const Icon(Icons.check_circle, color: Colors.grey) : null,
+                  title: Text(bookmark[DatabaseHelper.columnLocation], style: const TextStyle(fontWeight: FontWeight.w600)),
                   subtitle: Text(bookmark[DatabaseHelper.columnCoordinates]),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
