@@ -108,7 +108,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                     children: [
                       if (resource.swimmingSuitable)
                         const Padding(
-                          padding: EdgeInsets.only(right: 10),
+                          padding: EdgeInsets.only(right: 17),
                           child: Icon(FontAwesomeIcons.swimmer),
                         ),
                       if (getGeneralReportColor(resource) == Colors.red)

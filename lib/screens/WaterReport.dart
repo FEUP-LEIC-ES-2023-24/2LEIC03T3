@@ -169,18 +169,13 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.location_pin,
-                          color: Colors.black,
-                          size: 27,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
+                    const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 1),
+                      child: Icon(
+                        Icons.location_pin,
+                        color: Colors.black,
+                        size: 27,
+                      )
                     ),
                     Text(
                       widget.resource.location,
