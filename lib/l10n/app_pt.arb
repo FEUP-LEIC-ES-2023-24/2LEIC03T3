@@ -1,0 +1,18 @@
+{
+    "@@locale": "pt",
+    "waterQualityReport": "Relatório de Qualidade da Água",
+    "mapTitle": "Mapa",
+    "generalReport1": "CUIDADO",
+    "generalReport2": "SEGURO",
+    "generalReport3": "PERIGOSO",
+    "tip": "Dica:",
+    "tip1": "Seguro para beber e nadar.",
+    "tip2": "Seguro para beber, mas não para nadar.",
+    "tip3": "Não seguro para beber, mas seguro para nadar.",
+    "tip4": "Não seguro para beber nem nadar.",
+    "reportUpdate": "Relatório atualizado em",
+    "dissolvedOX": "OX\nDissolvido",
+    "turbidity": "Turbidez",
+    "nitrogen": "Nitrogênio",
+    "phosph": "Fósforo" 
+  }

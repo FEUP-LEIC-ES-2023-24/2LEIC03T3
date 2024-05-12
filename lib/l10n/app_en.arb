@@ -1,0 +1,63 @@
+{
+    "@@locale": "en", 
+    "waterQualityReport": "Water Quality Report",
+    "@waterQualityReport": {
+      "description": "Title for the Water Quality Report screen"
+    },
+    "mapTitle": "Map",
+    "@mapTitle": {
+      "description": "Title for the Map screen"
+    },
+    "generalReport1": "CAUTION",
+    "@generalReport1": {
+      "description": "General Report text 1"
+    },
+    "generalReport2": "SAFE",
+    "@generalReport2": {
+      "description": "General Report text 2"
+    },
+    "generalReport3": "HAZARDOUS",
+    "@generalReport3": {
+      "description": "General Report text 3"
+    },
+    "tip": "Tip:",
+    "@tip": {
+      "description": "Tip text"
+    },
+    "tip1": "Safe to drink and swim.",
+    "@tip1": {
+      "description": "Tip text"
+    },
+    "tip2": "Safe to drink but unsafe to swim.",
+    "@tip2": {
+      "description": "Tip text"
+    },
+    "tip3": "Unsafe to drink but safe to swim.",
+    "@tip3": {
+      "description": "Tip text"
+    },
+    "tip4": "Unsafe to drink and swim.",
+    "@tip4": {
+      "description": "Tip text"
+    },
+    "reportUpdate": "Report last updated on",
+    "@reportUpdate": {
+      "description": "Report last updated on text"
+    },
+    "dissolvedOX": "Dissolved\nOX",
+    "@dissolvedOX": {
+      "description": "Dissolved Oxygen text"
+    },
+    "turbidity": "Turbidity",
+    "@turbidity": {
+      "description": "Turbidity text"
+    },
+    "nitrogen": "Nitrogen",
+    "@nitrogen": {
+      "description": "Nitrogen text"
+    },
+    "phosph": "Phosph",
+    "@phosph": {
+      "description": "Phosph text"
+    }
+  }  

@@ -13,7 +13,7 @@ class AppLocalizations {
       desc: 'Title for the Water Quality Report screen',
     );
   }
-  
+
   String get mapTitle {
     return Intl.message(
       'Map',
