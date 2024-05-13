@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -44,15 +45,14 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<WaterResource>>(
-      future: getAllWaterResources(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('water_resources').snapshots(), //future: getAllWaterResources(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+        if (!snapshot.hasData) {
           return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+        
         } else {
-          List<WaterResource> resources = snapshot.data!;
+          List<WaterResource> resources = snapshot.data!.docs.map((doc) => WaterResource.fromDocumentSnapshot(doc)).toList();
           return Scaffold(
             appBar: AppBar(
               leading: IconButton(

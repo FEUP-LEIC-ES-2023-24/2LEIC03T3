@@ -232,7 +232,7 @@ We implemented what we had planned and are satisfied with what we did and how we
 
 - Notes on the Sprint Review:
 
-
+Demo of the product increment was successfully done on android phone emulator and release of the product increment was created in Github.
 
 - Notes on the Sprint Retrospective:
 

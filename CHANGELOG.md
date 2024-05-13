@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2024-05-14
+
+### Added
+
+- Completed PBI #6, #7 and #9: Added new features: Map with current location activated; User can bookmark locations, that are saved on the device; User can create water quality reports for new locations that are saved on database.
+
 ## [1.0.2] - 2024-04-30
 
 ### Added

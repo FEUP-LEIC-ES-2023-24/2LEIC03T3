@@ -33,6 +33,26 @@ class WaterResource {
     required this.generalreport,
     required this.conductivity,
   });
+
+  static WaterResource fromDocumentSnapshot(DocumentSnapshot doc) {
+  Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  return WaterResource(
+    location: data['location'],
+    ph: data['ph'],
+    temperature: data['temperature'],
+    bacteriaLevels: data['bacteria_levels'],
+    turbidity: data['turbidity'],
+    oxygenLevels: data['oxygen_levels'],
+    totalNitrogen: data['total_nitrogen'],
+    totalPhosphorus: data['total_phosphorus'],
+    swimmingSuitable: data['swimming_suitable'],
+    potable: data['potable'],
+    coordinates: data['coordinates'],
+    date: DateFormat('yyyy-MM-dd HH:mm:ss').format(data['last_change'].toDate()),
+    generalreport: data['general_report'],
+    conductivity: data['conductivity'],
+  );
+}
 }
 
 Future<List<WaterResource>> getAllWaterResources() async {
@@ -88,4 +108,3 @@ Future<WaterResource> getWaterResource(String coordinates) async {
     throw Exception('Document does not exist on the database');
   }
 }
-
