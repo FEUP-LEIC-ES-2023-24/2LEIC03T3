@@ -195,7 +195,7 @@ Goals of the Sprint 1 were accomplished and delivered features add value to the 
 - Notes on the Sprint Retrospective:
 
 We implemented what we had planned and are satisfied with what we did and how we worked as a team.
-Unfortunately, we weren't able to test and launch our app using an emulator, just in the web. This problem still puzzles us and solving it is our top-priority now.
+Unfortunately, we weren't able to test and launch our app using an emulator, just in the web. This problem still puzzles us and solving it is our top-priority now. We plan to solve the problem in the ESOF Tech Wizards (Clinic), with the help of more experienced students.
 
 - Happiness Meter after Sprint 1:
 
@@ -218,7 +218,7 @@ Goals of the Sprint 2 were accomplished and delivered features add value to the 
 
 - Notes on the Sprint Retrospective:
 
-We implemented what we had planned and are satisfied with what we did and how we worked as a team. What can be improved is the creation of acceptance, unit and integration tests to verify the product increment's correct operation.
+We implemented what we had planned and are satisfied with what we did and how we worked as a team. What can be improved is the creation of acceptance, unit and integration tests to verify the product increment's correct operation. We plan to allocate more time to this task to solve the problem.
 
 ### Sprint 3
 
@@ -228,11 +228,12 @@ We implemented what we had planned and are satisfied with what we did and how we
 
 - Scrum board after Sprint 3:
 
-![img](READMEresources/)
+![img](READMEresources/sprint3board.png)
 
 - Notes on the Sprint Review:
 
-Demo of the product increment was successfully done on android phone emulator and release of the product increment was created in Github.
+Demo of the product increment was successfully done on android phone emulator and release of the product increment was created in Github with the corresponding APK.
 
 - Notes on the Sprint Retrospective:
 
+We implemented what we had planned and are satisfied with what we did and how we worked as a team. We did not have any problems or issues that require a strategy to solve them.

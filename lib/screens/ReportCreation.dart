@@ -119,7 +119,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                       ),
                       Expanded(
                         child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Location', border: InputBorder.none),
+                          decoration: InputDecoration(labelText: 'Location Name', border: InputBorder.none),
                           onChanged: (value) {
                             setState(() {
                               location = value;
