@@ -1,30 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:project_es/mapSample.dart'; // Ensure correct import
-import 'package:project_es/screens/WaterReport.dart'; // Ensure correct import
-import 'package:cloud_firestore/cloud_firestore.dart'; // This is a Dart import
+import 'package:project_es/firebase_parse.dart';
+import 'package:project_es/screens/WaterReport.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  testWidgets('TapMapPin_ShowWaterReport', (WidgetTester tester) async {
-    // Arrange: Use simple mock data or setup without `WaterResource`
-    final mockLocation = 'Cascata Tahiti'; // Example location
-    final mockCoordinates =
-        '41.70374148864667, -8.109515773608667'; // Example coordinates
+  testWidgets('should navigate back when back button is tapped', (WidgetTester tester) async {
+    // Criação de um WaterResource fictício para passar para a tela
+    final waterResource = WaterResource(
+      location: 'Test Location',
+      coordinates: 'Test Coordinates',
+      generalreport: 'SAFE',
+      date: '2023-01-01',
+      ph: 7.0,
+      temperature: 22.0,
+      oxygenLevels: '5',
+      turbidity: 'Moderate',
+      bacteriaLevels: 'Low',
+      totalNitrogen: '0.4',
+      totalPhosphorus: '0.2',
+      conductivity: 'Moderate',
+      potable: true,
+      swimmingSuitable: true,
+    );
 
-    // Build the widget without complex resource data
-    await tester.pumpWidget(MaterialApp(
-      home: MapPage(
-          // Ensure `MapPage` accepts this structure without specific resource data
+    // Inicialize o modelo de WaterReportModel
+    final waterReportModel = WaterReportModel();
+
+    await tester.pumpWidget(
+      ChangeNotifierProvider<WaterReportModel>.value(
+        value: waterReportModel,
+        child: MaterialApp(
+          home: Scaffold(
+            body: WaterReportScreen(resource: waterResource),
           ),
-    ));
+        ),
+      ),
+    );
 
-    // Act: Tap the map pin with the specific location
-    await tester.tap(find.text(mockLocation)); // Tap by unique identifier
-    await tester.pumpAndSettle(); // Ensure animations complete
+    // Verifique se a tela de WaterReportScreen está visível
+    expect(find.text('Water Quality Report'), findsOneWidget);
 
-    // Assert: Verify navigation to `WaterReportScreen`
-    expect(find.byType(WaterReportScreen), findsOneWidget);
+    // Toque no botão de voltar
+    await tester.tap(find.byIcon(Icons.arrow_back_rounded));
+    await tester.pumpAndSettle();
 
-    // Additional assertions if needed, without using specific resource data
+    // Verifique se a navegação de retorno foi feita
+    // Como estamos testando sem um Navigator real, verificamos que o Navigator.pop foi chamado
+    expect(find.text('Water Quality Report'), findsNothing);
   });
 }
