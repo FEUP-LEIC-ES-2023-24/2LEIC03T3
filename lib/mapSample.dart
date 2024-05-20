@@ -49,12 +49,9 @@ class _MapPageState extends State<MapPage> {
       stream: FirebaseFirestore.instance.collection('water_resources').snapshots(), //future: getAllWaterResources(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return MaterialApp(
+          return const MaterialApp(
           home: Scaffold(
             backgroundColor: Colors.white,
-            body: Center(
-              child: Image.asset('assets/images/DigiWaterlogo.png'),
-            ),
           ),
         );
         } else {
