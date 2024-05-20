@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class WaterReportForm extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class WaterReportForm extends StatefulWidget {
 }
 
 class _WaterReportFormState extends State<WaterReportForm> {
+  final _dateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late String bacteriaLevels, conductivity, coordinates, generalReport, location, oxygenLevels, totalNitrogen, totalPhosphorus, turbidity;
   late DateTime lastChange;
@@ -31,6 +33,12 @@ class _WaterReportFormState extends State<WaterReportForm> {
     temperature = 0.0;
     potable = false;
     swimmingSuitable = false;
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
   }
 
   @override
@@ -138,6 +146,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
             child: TextFormField(
               key: Key('locationField'),
               decoration: InputDecoration(labelText: 'Location'),
+
               onChanged: (value) {
                 setState(() {
                   location = value;
@@ -402,15 +411,34 @@ class _WaterReportFormState extends State<WaterReportForm> {
   }
 
   Widget _buildDatePickerButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey,
-          foregroundColor: Colors.black,
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Container(
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: TextFormField(
+        controller: _dateController,
+        style: const TextStyle(color: Colors.black),
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          labelText: 'Select creation date',
+          labelStyle: const TextStyle(color: Colors.black),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            borderSide: BorderSide.none,
+          ),
         ),
-        child: const Text('Select creation date'),
-        onPressed: () async {
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please select a date';
+          }
+          return null;
+        },
+        onTap: () async {
+          FocusScope.of(context).requestFocus(new FocusNode());
           final DateTime? picked = await showDatePicker(
             context: context,
             initialDate: DateTime.now(),
@@ -420,12 +448,14 @@ class _WaterReportFormState extends State<WaterReportForm> {
           if (picked != null && picked != lastChange) {
             setState(() {
               lastChange = picked;
+              _dateController.text = DateFormat.yMd().format(picked);
             });
           }
         },
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildStatField(String title, String label, Function(String) onChanged, String? Function(String?)? validator) {
     return Container(

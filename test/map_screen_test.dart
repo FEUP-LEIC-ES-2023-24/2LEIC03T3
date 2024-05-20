@@ -12,6 +12,7 @@ void main() {
 
       final appBarTitle = find.descendant(of: appBar, matching: find.text('DigiWater'));
       expect(appBarTitle, findsOneWidget);
+
     });
 
     testWidgets('displays specific Center widget', (WidgetTester tester) async {
@@ -22,6 +23,7 @@ void main() {
 
       final centerWidget = find.ancestor(of: centerText, matching: find.byType(Center));
       expect(centerWidget, findsOneWidget);
+
     });
 
     testWidgets('displays correct text within Center widget', (WidgetTester tester) async {

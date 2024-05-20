@@ -1,9 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:project_es/firebase_parse.dart';
 import 'package:provider/provider.dart';
 import 'package:project_es/screens/WaterReport.dart';
 
+class MockFirebase extends Mock implements Firebase {}
+class MockFirebaseApp extends Mock implements FirebaseApp {}
 void main() {
   testWidgets('should navigate back when back button is tapped', (WidgetTester tester) async {
     // cria um mock de WaterResource para passar para a tela
