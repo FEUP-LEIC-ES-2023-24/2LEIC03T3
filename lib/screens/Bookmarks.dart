@@ -94,7 +94,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
             future: getWaterResource(bookmark[DatabaseHelper.columnCoordinates]),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const SizedBox.shrink();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {

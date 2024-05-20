@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _loadBookmarksFuture = DatabaseHelper.instance.queryAllRows();
+    _loadBookmarksFuture = Future.delayed(const Duration(seconds: 4), () => DatabaseHelper.instance.queryAllRows());
   }
 
   @override
@@ -32,7 +32,14 @@ class _MyAppState extends State<MyApp> {
       future: _loadBookmarksFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return MaterialApp(
+            home: Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(
+                child: Image.asset('assets/DigiWaterlogo.png'),
+              ),
+            ),
+          );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
