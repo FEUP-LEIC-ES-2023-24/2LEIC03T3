@@ -97,636 +97,384 @@ class _WaterReportFormState extends State<WaterReportForm> {
           ),
         ],
       ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 1),
-                        child: Icon(
-                          Icons.location_pin,
-                          size: 27,
-                        )
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Location Name', border: InputBorder.none),
-                          onChanged: (value) {
-                            setState(() {
-                              location = value;
-                            });
-                          },
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter location name';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                _buildLocationField(),
+                _buildCoordinatesField(),
+                _buildPhAndTempFields(),
+                _buildOxygenAndTurbidityFields(),
+                _buildBacteriaAndNitrogenFields(),
+                _buildPhosphorusAndConductivityFields(),
+                _buildGeneralReportField(),
+                _buildPotableCheckbox(),
+                _buildSwimmingCheckbox(),
+                _buildDatePickerButton(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLocationField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 1),
+            child: Icon(
+              Icons.location_pin,
+              size: 27,
+            ),
+          ),
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration(labelText: 'Location'),
+              onChanged: (value) {
+                setState(() {
+                  location = value;
+                });
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter location name';
+                }
+                return null;
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCoordinatesField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 1),
+            child: Icon(
+              Icons.map,
+              size: 27,
+            ),
+          ),
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration(labelText: 'Coordinates'),
+              onChanged: (value) {
+                setState(() {
+                  coordinates = value;
+                });
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter coordinates';
+                }
+                return null;
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhAndTempFields() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: _buildStatField('pH', 'pH', (value) {
+              setState(() {
+                pH = double.tryParse(value)!;
+              });
+            }, (value) {
+              if (value!.isEmpty) {
+                return 'Please enter pH value';
+              }
+              if (double.tryParse(value) == null) {
+                return 'Please enter a valid number';
+              }
+              return null;
+            }),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: _buildStatField('Temp', 'Temperature', (value) {
+              setState(() {
+                temperature = double.tryParse(value)!;
+              });
+            }, (value) {
+              if (value!.isEmpty) {
+                return 'Please enter temperature';
+              }
+              if (double.tryParse(value) == null) {
+                return 'Please enter a valid number';
+              }
+              return null;
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOxygenAndTurbidityFields() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: _buildStatField('Dissolved OX', 'Oxygen Levels', (value) {
+              setState(() {
+                oxygenLevels = value;
+              });
+            }, (value) {
+              if (value!.isEmpty) {
+                return 'Please enter oxygen levels';
+              }
+              return null;
+            }),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: _buildDropdownField('Turbidity', ['Low', 'Moderate', 'High'], (value) {
+              setState(() {
+                turbidity = value!;
+              });
+            }, (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please select a level';
+              }
+              return null;
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBacteriaAndNitrogenFields() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: _buildDropdownField('Microorgs', ['Low', 'Moderate', 'High'], (value) {
+              setState(() {
+                bacteriaLevels = value!;
+              });
+            }, (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please select a bacteria level';
+              }
+              return null;
+            }),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: _buildStatField('Nitrogen', 'Total Nitrogen', (value) {
+              setState(() {
+                totalNitrogen = value;
+              });
+            }, (value) {
+              if (value!.isEmpty) {
+                return 'Please enter total nitrogen';
+              }
+              return null;
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhosphorusAndConductivityFields() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: _buildStatField('Phosph', 'Total Phosphorus', (value) {
+              setState(() {
+                totalPhosphorus = value;
+              });
+            }, (value) {
+              if (value!.isEmpty) {
+                return 'Please enter total phosphorus';
+              }
+              return null;
+            }),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: _buildDropdownField('Conductiv', ['Low', 'Moderate', 'High'], (value) {
+              setState(() {
+                conductivity = value!;
+              });
+            }, (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please select conductivity';
+              }
+              return null;
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGeneralReportField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: DropdownButtonFormField<String>(
+          decoration: InputDecoration(labelText: 'General Report', labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20), border: InputBorder.none),
+          items: <String>['SAFE', 'CAUTION', 'HAZARDOUS'].map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              generalReport = newValue!;
+            });
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please select a general report';
+            }
+            return null;
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPotableCheckbox() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: CheckboxListTile(
+        title: Text('Potable'),
+        secondary: const Icon(Icons.water_drop_rounded),
+        value: potable,
+        onChanged: (bool? value) {
+          setState(() {
+            potable = value ?? false;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildSwimmingCheckbox() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: CheckboxListTile(
+        title: Text('Swimming Suitable'),
+        secondary: const Icon(FontAwesomeIcons.swimmer),
+        value: swimmingSuitable,
+        onChanged: (bool? value) {
+          setState(() {
+            swimmingSuitable = value ?? false;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildDatePickerButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.grey,
+          foregroundColor: Colors.black,
+        ),
+        child: const Text('Select creation date'),
+        onPressed: () async {
+          final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2100),
+          );
+          if (picked != null && picked != lastChange) {
+            setState(() {
+              lastChange = picked;
+            });
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildStatField(String title, String label, Function(String) onChanged, String? Function(String?)? validator) {
+    return Flexible(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Readex Pro',
+                fontSize: 21,
+                letterSpacing: 0,
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 1),
-                        child: Icon(
-                          Icons.map,
-                          size: 27,
-                        )
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Coordinates', border: InputBorder.none),
-                          onChanged: (value) {
-                            setState(() {
-                              coordinates = value;
-                            });
-                          },
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter coordinates';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: 100,
-                                height: 105,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const Align(
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: Text(
-                                        'pH',
-                                        style: TextStyle(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 27,
-                                          letterSpacing: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    TextFormField(
-                                      decoration: const InputDecoration(labelText: 'pH', border: InputBorder.none),
-                                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                      onChanged: (value) {
-                                        setState(() {
-                                          pH = double.tryParse(value)!;
-                                        });
-                                      },
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Please enter pH value';
-                                        }
-                                        if (double.tryParse(value) == null) {
-                                          return 'Please enter a valid number';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 105,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const Align(
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: Text(
-                                        'Temp',
-                                        style: TextStyle(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 27,
-                                          letterSpacing: 0,
-                                        ),
-                                      ),
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(labelText: 'Temperature', border: InputBorder.none),
-                                      keyboardType: TextInputType.numberWithOptions(decimal: true), // allows decimal numbers
-                                      onChanged: (value) {
-                                        setState(() {
-                                          temperature = double.tryParse(value)!; // convert to double
-                                        });
-                                      },
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Please enter temperature';
-                                        }
-                                        if (double.tryParse(value) == null) {
-                                          return 'Please enter a valid number';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          // Repeat the same structure for other rows
-                          Padding(
-                            padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 126,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Dissolved\nOX',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 21,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      TextFormField(
-                                        decoration: InputDecoration(labelText: 'Oxygen Levels', border: InputBorder.none),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            oxygenLevels = value;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter oxygen levels';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    color:
-                                    Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child:  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Turbidity',
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 23,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      DropdownButtonFormField<String>(
-                                        decoration: InputDecoration(labelText: 'Turbidity', border: InputBorder.none),
-                                        items: <String>['Low', 'Moderate', 'High'].map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            turbidity = newValue!;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please select a level';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Microorgs',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 22,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      DropdownButtonFormField<String>(
-                                        decoration: InputDecoration(labelText: 'Bacteria Levels', border: InputBorder.none),
-                                        items: <String>['Low', 'Moderate', 'High'].map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            bacteriaLevels = newValue!;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please select a bacteria level';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 100,
-                                  height: 100,
-                                  decoration: const BoxDecoration(
-                                    color:
-                                    Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child:  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Nitrogen',
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 22,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      TextFormField(
-                                        decoration: InputDecoration(labelText: 'Total Nitrogen', border: InputBorder.none),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            totalNitrogen = value;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter total nitrogen';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 102,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Phosph',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 26,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      TextFormField(
-                                        decoration: InputDecoration(labelText: 'Total Phosphorus', border: InputBorder.none),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            totalPhosphorus = value;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter total phosphorus';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 100,
-                                  height: 132,
-                                  decoration: const BoxDecoration(
-                                    color:
-                                    Colors.grey,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                  ),
-                                  child:  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Align(
-                                        alignment:
-                                        AlignmentDirectional(0, -1),
-                                        child: Text(
-                                          'Conductiv',
-                                          style: TextStyle(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 22,
-                                            letterSpacing: 0,
-                                          ),
-                                        ),
-                                      ),
-                                      DropdownButtonFormField<String>(
-                                        decoration: InputDecoration(labelText: 'Conductivity', border: InputBorder.none),
-                                        items: <String>['Low', 'Moderate', 'High'].map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            conductivity = newValue!;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please select conductivity';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 209,
-                                      height: 70,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(14),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: 
-                                      DropdownButtonFormField<String>(
-                                        decoration: InputDecoration(labelText: 'General Report', labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20), border: InputBorder.none),
-                                        items: <String>['SAFE', 'CAUTION', 'HAZARDOUS'].map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            generalReport = newValue!;
-                                          });
-                                        },
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please select a general report';
-                                          }
-                                          return null;
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  CheckboxListTile(
-                    title: Text('Potable'),
-                    secondary: const Icon(Icons.water_drop_rounded),
-                    value: potable,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        potable = value ?? false;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  CheckboxListTile(
-                    title: Text('Swimming Suitable'),
-                    secondary: const Icon(FontAwesomeIcons.swimmer),
-                    value: swimmingSuitable,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        swimmingSuitable = value ?? false;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 6),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.black,
-                ),
-                child: const Text('Select creation date'),
-                onPressed: () async {
-                  final DateTime? picked = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                  );
-                  if (picked != null && picked != lastChange) {
-                    setState(() {
-                      lastChange = picked;
-                    });
-                  }
-                },
-              ),
+            TextFormField(
+              decoration: InputDecoration(labelText: label, border: InputBorder.none),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onChanged: onChanged,
+              validator: validator,
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDropdownField(String label, List<String> items, Function(String?) onChanged, String? Function(String?)? validator) {
+    return Flexible(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: const EdgeInsets.all(8.0),
+        child: DropdownButtonFormField<String>(
+          decoration: InputDecoration(labelText: label, border: InputBorder.none),
+          items: items.map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: onChanged,
+          validator: validator,
         ),
       ),
     );

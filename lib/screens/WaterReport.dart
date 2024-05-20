@@ -173,76 +173,73 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
                             size: 27,
                           )
                       ),
-                      Text(
-                        widget.resource.location,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 17,
-                          letterSpacing: 0,
-                          fontWeight: FontWeight.w600,
+                      Flexible(
+                        child: Text(
+                          widget.resource.location,
+                          style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 17,
+                            letterSpacing: 0,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 209,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                color: getGeneralReportColor(widget.resource),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(15),
-                                  bottomRight: Radius.circular(15),
-                                  topLeft: Radius.circular(14),
-                                  topRight: Radius.circular(15),
-                                ),
-                              ),
-                              child: Align(
-                                alignment: const AlignmentDirectional(0, 0),
-                                child: Text(
-                                  widget.resource.generalreport,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 27,
-                                    letterSpacing: 0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            color: getGeneralReportColor(widget.resource),
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                              topLeft: Radius.circular(14),
+                              topRight: Radius.circular(15),
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          ),
+                          child: Align(
+                            alignment: const AlignmentDirectional(0, 0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
                               child: Text(
-                                'Tip: ${getTip(widget.resource)}',
+                                widget.resource.generalreport,
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    letterSpacing: 0,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                              child: Text(
-                                'Report last updated on ${widget.resource.date}',
-                                style: const TextStyle(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 27,
                                   letterSpacing: 0,
-                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
-                          ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Text(
+                            'Tip: ${getTip(widget.resource)}',
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                letterSpacing: 0,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Text(
+                            'Report last updated on ${widget.resource.date}',
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              letterSpacing: 0,
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -341,7 +338,7 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: MediaQuery.of(context).size.width * 0.4,
       height: 100,
       decoration: BoxDecoration(
         color: color,
