@@ -184,4 +184,4 @@ Demo of the product increment was successfully done on android phone emulator an
 
 - Notes on the Sprint Retrospective:
 
-We implemented what we had planned and are satisfied with what we did and how we worked as a team. We did not have any problems or issues that require a strategy to solve them.
+We implemented what we had planned and are satisfied with what we did and how we worked as a team. We did not have any problems or issues that require a strategy to solve them. Regarding Sprint 2, we recongized that we didn't allocate enough time to the implementation and creation of tests. After Sprint 2 retrospective and corresponding strategy we did indeed allocate more time to testing and hence completed Sprint 3 with more tests for our app.

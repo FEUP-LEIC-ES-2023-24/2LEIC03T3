@@ -4,7 +4,7 @@
 
 ### Added
 
-- Completed PBI #6, #7 and #9: Added new features: Map with current location activated; User can bookmark locations, that are saved on the device; User can create water quality reports for new locations that are saved on database. We also populated our app with more data via the feature that enables the user to create water quality reports.
+- Completed PBI #6, #7 and #9: Added new features: Map with current location activated; User can bookmark locations, that are saved on the device; User can create water quality reports for new locations that are saved on database. We also populated our app with more data via the feature that enables the user to create water quality reports. We also enhanced the design and UI of the app and made it dynamic/responsive. A loading page and an app icon launcher with DigiWater's logo were also implemented.
 
 ## [1.0.2] - 2024-04-30
 
