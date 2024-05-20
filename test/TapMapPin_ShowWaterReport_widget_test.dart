@@ -1,10 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:project_es/mapSample.dart'; // Ensure correct import
 import 'package:project_es/screens/WaterReport.dart'; // Ensure correct import
 import 'package:cloud_firestore/cloud_firestore.dart'; // This is a Dart import
 
+class MockFirebase extends Mock implements Firebase {}
+class MockFirebaseApp extends Mock implements FirebaseApp {}
 void main() {
+  setUpAll(() async {
+    // Mock the Firebase App
+    MockFirebase mockFirebase = MockFirebase();
+    FirebaseApp app = MockFirebaseApp();
+    when(mockFirebase.initializeApp()).thenAnswer((_) => Future.value(app));
+  });
   testWidgets('TapMapPin_ShowWaterReport', (WidgetTester tester) async {
     // Arrange: Use simple mock data or setup without `WaterResource`
     final mockLocation = 'Cascata Tahiti'; // Example location

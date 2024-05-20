@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,6 +11,10 @@ import 'package:mockito/mockito.dart';
 
 //class MockDatabaseHelper extends Mock implements DatabaseHelper {}
 void main() {
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  });
   testWidgets('GoogleMap widget should be created with myLocationEnabled set to true',
       (WidgetTester tester) async {
     // Build our app and trigger a frame.

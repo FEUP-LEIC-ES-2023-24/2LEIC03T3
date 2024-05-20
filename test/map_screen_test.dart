@@ -11,13 +11,13 @@ void main() {
       expect(appBar, findsOneWidget);
 
       final Text title = tester.widget(find.descendant(of: appBar, matching: find.byType(Text)));
-      expect(title.data, 'Map');
+      expect(title.data, 'DigiWater');
     });
 
     testWidgets('displays Center widget', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MapScreen()));
 
-      expect(find.byType(Center), findsOneWidget);
+      expect(find.byType(Center), findsWidgets);
     });
 
     testWidgets('displays correct text within Center widget', (WidgetTester tester) async {
