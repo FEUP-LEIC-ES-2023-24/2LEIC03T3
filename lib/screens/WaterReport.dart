@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-//import 'package:project_es/screens/mapSample.dart';
 import '../DatabaseHelper.dart';
 import '../firebase_parse.dart';
 import '../mapSample.dart';
@@ -10,6 +9,7 @@ class WaterReportModel extends ChangeNotifier {
   final unfocusNode = FocusNode();
   void dispose() {
     unfocusNode.dispose();
+    super.dispose();
   }
 }
 
@@ -21,7 +21,6 @@ class WaterReportScreen extends StatefulWidget {
   @override
   _WaterReportScreenState createState() => _WaterReportScreenState();
 }
-
 
 class WaterReport extends StatefulWidget {
   @override
@@ -80,7 +79,6 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
     }
   }
 
-
   Future<void> _toggleBookmark() async {
     if (isBookmarked) {
       List<Map<String, dynamic>> rows = await DatabaseHelper.instance.queryAllRows();
@@ -121,13 +119,11 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
               size: 30,
             ),
             onPressed: () async {
-
               Navigator.pop(context, 'update');
             },
           ),
           actions: <Widget>[
             Padding(
-              //alinhar para a esquerda bastante
               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 30, 0),
               child: IconButton(
                 icon: Icon(
@@ -159,506 +155,219 @@ class _WaterReportScreenState extends State<WaterReportScreen> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-            child: Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 1),
-                      child: Icon(
-                        Icons.location_pin,
-                        color: Colors.black,
-                        size: 27,
-                      )
-                    ),
-                    Text(
-                      widget.resource.location,
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 17,
-                        letterSpacing: 0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                  child: Row(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 209,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: getGeneralReportColor(widget.resource),
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15),
-                                topLeft: Radius.circular(14),
-                                topRight: Radius.circular(15),
-                              ),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(0, 0),
-                              child: Text(
-                                widget.resource.generalreport,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 27,
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                            child: Text(
-                              'Tip: ${getTip(widget.resource)}',
-                              style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  letterSpacing: 0,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                            child: Text(
-                              'Report last updated on ${widget.resource.date}',
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                letterSpacing: 0,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ],
+                      const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 1),
+                          child: Icon(
+                            Icons.location_pin,
+                            color: Colors.black,
+                            size: 27,
+                          )
                       ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration:  BoxDecoration(
-                                      color: getPhColor(widget.resource.ph ?? 0),
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(15),
-                                        bottomRight: Radius.circular(15),
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Align(
-                                          alignment: AlignmentDirectional(0, -1),
-                                          child: Text(
-                                            'pH',
-                                            style: TextStyle(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 27,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            (widget.resource.ph ?? 0).toString(),
-                                            style: const TextStyle(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 18,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color:
-                                      getTempColor(widget.resource.temperature ?? 0),
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(15),
-                                        bottomRight: Radius.circular(15),
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15),
-                                      ),
-                                    ),
-                                    child:  Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Align(
-                                          alignment:
-                                          AlignmentDirectional(0, -1),
-                                          child: Text(
-                                            'Temp',
-                                            style: TextStyle(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 27,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: const AlignmentDirectional(0, 1),
-                                          child: Text(
-                                            (widget.resource.temperature ?? 0).toString(),
-                                            style: const TextStyle(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 18,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: getOxygenColor(widget.resource.oxygenLevels),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Dissolved\nOX',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 21,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.oxygenLevels,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color:
-                                        getTurbidityColor(widget.resource.turbidity),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child:  Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Turbidity',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 23,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.turbidity,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: getBacteriaColor(widget.resource.bacteriaLevels),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Microorgs',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 22,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.bacteriaLevels,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: getNitrogenColor(widget.resource.totalNitrogen),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Nitrogen',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 22,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.totalNitrogen,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: getPhosphorusColor(widget.resource.totalPhosphorus),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child:  Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Phosph',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 26,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.totalPhosphorus,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: getConductivityColor(widget.resource.conductivity),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Align(
-                                            alignment:
-                                            AlignmentDirectional(0, -1),
-                                            child: Text(
-                                              'Conductiv',
-                                              style: TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 22,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(0, 1),
-                                            child: Text(
-                                              widget.resource.conductivity,
-                                              style: const TextStyle(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 18,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                      Text(
+                        widget.resource.location,
+                        style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 17,
+                          letterSpacing: 0,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 209,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                color: getGeneralReportColor(widget.resource),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                  topLeft: Radius.circular(14),
+                                  topRight: Radius.circular(15),
+                                ),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0, 0),
+                                child: Text(
+                                  widget.resource.generalreport,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 27,
+                                    letterSpacing: 0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                              child: Text(
+                                'Tip: ${getTip(widget.resource)}',
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    letterSpacing: 0,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                              child: Text(
+                                'Report last updated on ${widget.resource.date}',
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  letterSpacing: 0,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            StatCard(
+                              title: 'pH',
+                              value: widget.resource.ph?.toString() ?? 'N/A',
+                              color: getPhColor(widget.resource.ph ?? 0),
+                            ),
+                            StatCard(
+                              title: 'Temp',
+                              value: widget.resource.temperature?.toString() ?? 'N/A',
+                              color: getTempColor(widget.resource.temperature ?? 0),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            StatCard(
+                              title: 'Dissolved\nOX',
+                              value: widget.resource.oxygenLevels,
+                              color: getOxygenColor(widget.resource.oxygenLevels),
+                            ),
+                            StatCard(
+                              title: 'Turbidity',
+                              value: widget.resource.turbidity,
+                              color: getTurbidityColor(widget.resource.turbidity),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            StatCard(
+                              title: 'Microorgs',
+                              value: widget.resource.bacteriaLevels,
+                              color: getBacteriaColor(widget.resource.bacteriaLevels),
+                            ),
+                            StatCard(
+                              title: 'Nitrogen',
+                              value: widget.resource.totalNitrogen,
+                              color: getNitrogenColor(widget.resource.totalNitrogen),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            StatCard(
+                              title: 'Phosph',
+                              value: widget.resource.totalPhosphorus,
+                              color: getPhosphorusColor(widget.resource.totalPhosphorus),
+                            ),
+                            StatCard(
+                              title: 'Conductiv',
+                              value: widget.resource.conductivity,
+                              color: getConductivityColor(widget.resource.conductivity),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class StatCard extends StatelessWidget {
+  final String title;
+  final String value;
+  final Color color;
+
+  StatCard({
+    required this.title,
+    required this.value,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Readex Pro',
+              fontSize: 21,
+              letterSpacing: 0,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontFamily: 'Readex Pro',
+              fontSize: 18,
+              letterSpacing: 0,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -722,7 +431,6 @@ Color getNitrogenColor(String nitrogen) {
   } else {
     return Colors.red;
   }
-
 }
 
 Color getPhosphorusColor(String phosphorus) {
@@ -787,19 +495,3 @@ BitmapDescriptor getMarkerIcon(WaterResource resource) {
     return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
