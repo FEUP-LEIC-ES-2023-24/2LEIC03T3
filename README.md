@@ -33,14 +33,11 @@ Tomás Oliveira - up202208415@up.pt
 
 ### Product Vision
 
-DigiWater aims to become the go-to companion for Gerês' travelers seeking reassurance and guidance on water quality, empowering them to explore with confidence and stay healthy throughout their journeys. With DigiWater, its users can do a water quality scan using its current location or use a map to search for a specific site, attaining a detailed water quality report of the specific location. Hence, one can make informed decision about future adventures in Gerês and be sure about the safety of the different water bodies Gerês has to offer.
+DigiWater aims to become the go-to companion for Gerês' travelers seeking reassurance and guidance on water quality, empowering them to explore with confidence and stay healthy throughout their journeys.
+In the future we aim to extend our vision globally, recognizing the diverse water quality challenges faced by travelers across continents, from Europe to Africa and beyond. Because water is life!
 
 ### Features and Assumptions
 
-- Login via email;
-- Profile with associated name, email;
-- Water Quality Scan Button - click the button to do a location-based water quality scan:
-    - List of nearest bodies of water appears and if location is clicked the specific report appears (Report Screen)
 - Map - map-based water reports:
     - Map of Gerês with various pins with colors (quality-wise, so that bad ones can be avoided) for the different available bodies of water - if clicked sepcific Report Screen appears;
 - Report Screen - specific report of a certain body of water with a general overview (report), plot of the various parameters (with color and value), as well as tips (telling if water is safe to bath, drink or use or neither). The date of the last update of the report data is also provided;
@@ -50,64 +47,14 @@ DigiWater aims to become the go-to companion for Gerês' travelers seeking reass
 
 ### Elevator Pitch
 
-Our mobile application, DigiWater, is designed to address the concerns of travelers, hikers and adventurers regarding the quality of water in Gerês' lakes, rivers, lagoons and small creeks. Through intuitive visualizations and metrics, DigiWater will empower travelers with crucial information about the safety of water in Gerês, helping them make informed decisions about hydration and fun.
-While existing water testing devices are not mobile phone-compatible, DigiWater leverages publicly available data to offer comprehensive assessments without the need for specialized hardware. In the future we aim to extend our vision globally, recognizing the diverse water quality challenges faced by travelers across continents, from Europe to Africa and beyond.
+Todos nós já tivemos dúvidas se poderíamos beber água de uma certa fonte ou se deveríamos mergulhar num lago desconhecido. Uma decisão errada pode ter graves consequências. 
+Bem, com a DigiWater esse problema deixará de existir. 
+A DigiWater tem como missão facilitar o acesso a dados sobre a qualidade da água, funcionando como um megafone. 
+Através de um mapa com pins e da visualização de dados intuitiva em forma de relatórios de qualidade da água, a DigiWater irá ajudar os seus utilizadores a tomarem decisões mais informadas no que toca ao consumo e utilização de água.
+Globalmente, todos, desde autoridades e empresas credenciadas de teste de águas até indivíduos com dispositivos confiáveis ​​de alta tecnologia para testes de água, poderão contribuir para a rede da DigiWater e, assim, ajudar a cumprir a missão de fornecer dados sobre a segurança e qualidade da água a todos.
+Porque água é vida, não é verdade?
 
 ## Requirements
-
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
-
-### User Stories
-
-- Epics:
-
-As a Gerês enthusiast, I want to be able to know the quality of a body of water that’s near me (location-based).
-
-As a Gerês enthusiast, I want to be able to search for bodies of water in advance so that I can get a report about its water quality (map-based with pins).
-
-- User Stories:
-
-As a hiker in Gêres, I want to find a safe body of water so that I can bathe and relax after a long walk. 
-
-  Given that I am a hiker in Gêres
-  When I search for nearby bodies of water
-  Then I should be provided with information on safe options for bathing, relaxing, and hydrating after my hike
-
-As a camper in Gêres, I want to find a good spot next to a safe body of water so that I can use it to bath and drink.
-
-  Given that I am a camper in Gêres
-  When I search for camping spots near bodies of water
-  Then I should be presented with options that include safe bathing areas 
-
-As a swimmer enthusiast, I want to easily access a detailed map of all body of water in Gêres, so I know which ones to avoid.
-
-  Given that I am a swimmer enthusiast
-  When I access the map of bodies of water in Gêres
-  Then I should be able to view detailed information indicating which areas to avoid
-
-As a user, I want to receive up to date information about the quality of all bodies of water in Gêres, so that I don’t face misleading data that ultimately can compromise my health. (always up to date data)
-
-  Given that I am a user seeking information about the quality of bodies of water in Gêres
-  When I access the platform
-  Then I should receive the latest and most accurate data regarding water quality
-
-As a user, I want to know when the state of a body of water was last updated, so I don’t have any doubts about its condition.
-
-  Given that I am viewing information about a specific body of water in Gêres
-  When I check its status
-  Then I should see the date and time of the last update regarding its condition
-
-As a user, I want to search for a specific beach, lake, river, lagoon or creeks and find trustworthy information about it. (mapa com pins)
-
-  Given that I want to find information about a specific body of water in Gêres
-  When I search for it by name or type
-  Then I should be presented with reliable and detailed information about that location
-
-As a user, I want to bookmark my favourite spots so that I can easily access it in a next time. 
-
-  Given that I have found a favorite spot at a body of water in Gêres
-  When I navigate to its profile
-  Then I should be able to bookmark it for easy access in the future
 
 ### Domain model
 
@@ -116,6 +63,7 @@ As a user, I want to bookmark my favourite spots so that I can easily access it 
 The DigiWater app aims to to address the concerns of travelers, hikers and adventurers regarding the quality of water in Gerês' lakes, rivers, lagoons and small creeks. Each User, after logging in, has an unique ID, as well as an email, password and name associated to it. Each user has also always a (current) location which has a name and a latitude and longitude. The location shall be a lake, river, lagoon or creek in Gerês. The DigiWater app also has a Map that has many unique Pins. Each pin has a color, a location and one WaterReport associated to it. A water report represents a report detailing the quality of water at a specific location. It has a unique location, a date, a tip and 9 associated Parameters used to assess water quality. Each Parameter has a name, value and unit, as well as a color associated to it.
 
 ## Architecture and Design
+
 The architecture of a software system encompasses the set of key decisions about its overall organization. 
 
 A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
