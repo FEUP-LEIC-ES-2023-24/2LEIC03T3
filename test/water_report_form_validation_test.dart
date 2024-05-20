@@ -6,11 +6,9 @@ void main() {
   testWidgets('WaterReportForm displays validation errors for required fields', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(home: WaterReportForm()));
 
-    // Try to submit the form without filling required fields
     await tester.tap(find.byIcon(Icons.send));
     await tester.pump();
 
-    // Verify validation errors are displayed
     expect(find.text('Please enter location name'), findsOneWidget);
     expect(find.text('Please enter coordinates'), findsOneWidget);
   });

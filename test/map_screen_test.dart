@@ -17,11 +17,9 @@ void main() {
     testWidgets('displays specific Center widget', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MapScreen()));
 
-      // Find the specific Center widget containing the text 'Map Screen'
       final centerText = find.text('Map Screen');
       expect(centerText, findsOneWidget);
 
-      // Ensure that the parent of this text widget is a Center widget
       final centerWidget = find.ancestor(of: centerText, matching: find.byType(Center));
       expect(centerWidget, findsOneWidget);
     });
