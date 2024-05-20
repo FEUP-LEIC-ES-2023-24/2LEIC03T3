@@ -7,7 +7,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   auto_size_text: 3.0.0
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.0
@@ -34,7 +34,7 @@ dependencies:
   url_launcher: ^6.2.6
   google_maps_flutter: ^2.6.0
   location: ^6.0.1
-  flutter_polyline_points: ^2.0.0 
+  flutter_polyline_points: ^2.0.0
   cloud_firestore: ^4.10.5
 
 dev_dependencies:
@@ -45,8 +45,8 @@ dev_dependencies:
   flutter_lints: ^3.0.2
   lints: 3.0.0
   flutter_gherkin: ^2.0.0
-  mockito: ^5.4.2
-
+  mockito: ^5.0.17
+  build_runner: ^2.1.11
 
 flutter:
   uses-material-design: true
@@ -56,4 +56,4 @@ flutter:
     # - assets/audios/
     # - assets/lottie_animations/
     # - assets/rive_animations/
-    # - assets/pdfs/ 
+    # - assets/pdfs/

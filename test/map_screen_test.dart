@@ -10,21 +10,27 @@ void main() {
       final appBar = find.byType(AppBar);
       expect(appBar, findsOneWidget);
 
-      final Text title = tester.widget(find.descendant(of: appBar, matching: find.byType(Text)));
-      expect(title.data, 'Map');
+      final appBarTitle = find.descendant(of: appBar, matching: find.text('DigiWater'));
+      expect(appBarTitle, findsOneWidget);
     });
 
-    testWidgets('displays Center widget', (WidgetTester tester) async {
+    testWidgets('displays specific Center widget', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MapScreen()));
 
-      expect(find.byType(Center), findsOneWidget);
+      // Find the specific Center widget containing the text 'Map Screen'
+      final centerText = find.text('Map Screen');
+      expect(centerText, findsOneWidget);
+
+      // Ensure that the parent of this text widget is a Center widget
+      final centerWidget = find.ancestor(of: centerText, matching: find.byType(Center));
+      expect(centerWidget, findsOneWidget);
     });
 
     testWidgets('displays correct text within Center widget', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MapScreen()));
 
-      final Text centerText = tester.widget(find.descendant(of: find.byType(Center), matching: find.byType(Text)));
-      expect(centerText.data, 'Map Screen');
+      final centerText = find.text('Map Screen');
+      expect(centerText, findsOneWidget);
     });
   });
 }

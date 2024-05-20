@@ -74,7 +74,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                   'temperature': temperature,
                   'total_nitrogen': totalNitrogen,
                   'total_phosphorus': totalPhosphorus,
-                  'turbidity' : turbidity
+                  'turbidity': turbidity,
                 });
 
                 _formKey.currentState?.reset();
@@ -136,6 +136,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
           ),
           Expanded(
             child: TextFormField(
+              key: Key('locationField'),
               decoration: InputDecoration(labelText: 'Location'),
               onChanged: (value) {
                 setState(() {
@@ -169,6 +170,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
           ),
           Expanded(
             child: TextFormField(
+              key: Key('coordinatesField'),
               decoration: InputDecoration(labelText: 'Coordinates'),
               onChanged: (value) {
                 setState(() {
@@ -426,56 +428,54 @@ class _WaterReportFormState extends State<WaterReportForm> {
   }
 
   Widget _buildStatField(String title, String label, Function(String) onChanged, String? Function(String?)? validator) {
-    return Flexible(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'Readex Pro',
-                fontSize: 21,
-                letterSpacing: 0,
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Readex Pro',
+              fontSize: 21,
+              letterSpacing: 0,
             ),
-            TextFormField(
-              decoration: InputDecoration(labelText: label, border: InputBorder.none),
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onChanged: onChanged,
-              validator: validator,
-            ),
-          ],
-        ),
+          ),
+          TextFormField(
+            key: Key('${label.toLowerCase()}Field'),
+            decoration: InputDecoration(labelText: label, border: InputBorder.none),
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            onChanged: onChanged,
+            validator: validator,
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildDropdownField(String label, List<String> items, Function(String?) onChanged, String? Function(String?)? validator) {
-    return Flexible(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        padding: const EdgeInsets.all(8.0),
-        child: DropdownButtonFormField<String>(
-          decoration: InputDecoration(labelText: label, border: InputBorder.none),
-          items: items.map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          onChanged: onChanged,
-          validator: validator,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      padding: const EdgeInsets.all(8.0),
+      child: DropdownButtonFormField<String>(
+        key: Key('${label.toLowerCase()}Field'),
+        decoration: InputDecoration(labelText: label, border: InputBorder.none),
+        items: items.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: onChanged,
+        validator: validator,
       ),
     );
   }

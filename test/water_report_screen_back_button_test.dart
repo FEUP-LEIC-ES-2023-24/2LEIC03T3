@@ -4,10 +4,9 @@ import 'package:project_es/firebase_parse.dart';
 import 'package:provider/provider.dart';
 import 'package:project_es/screens/WaterReport.dart';
 
-
 void main() {
   testWidgets('should navigate back when back button is tapped', (WidgetTester tester) async {
-    // Criação de um WaterResource fictício para passar para a tela
+    // cria um mock de WaterResource para passar para a tela
     final waterResource = WaterResource(
       location: 'Test Location',
       coordinates: 'Test Coordinates',
@@ -25,7 +24,7 @@ void main() {
       swimmingSuitable: true,
     );
 
-    // Inicialize o modelo de WaterReportModel
+    // dá inicialize ao WaterReportModel
     final waterReportModel = WaterReportModel();
 
     await tester.pumpWidget(
@@ -39,15 +38,13 @@ void main() {
       ),
     );
 
-    // Verifique se a tela de WaterReportScreen está visível
+    // checka se a tela de WaterReportScreen está visível e se aparece o texto 'Water Quality Report'
     expect(find.text('Water Quality Report'), findsOneWidget);
 
-    // Toque no botão de voltar
     await tester.tap(find.byIcon(Icons.arrow_back_rounded));
     await tester.pumpAndSettle();
 
-    // Verifique se a navegação de retorno foi feita
-    // Como estamos testando sem um Navigator real, verificamos que o Navigator.pop foi chamado
+    // verifica novamente, dado que o back foi pressionado
     expect(find.text('Water Quality Report'), findsNothing);
   });
 }
