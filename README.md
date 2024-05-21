@@ -47,12 +47,14 @@ In the future we aim to extend our vision globally, recognizing the diverse wate
 
 ### Elevator Pitch
 
-Todos nós já tivemos dúvidas se poderíamos beber água de uma certa fonte ou se deveríamos mergulhar num lago desconhecido. Uma decisão errada pode ter graves consequências. 
+Todos nós já tivemos dúvidas se poderíamos beber água de uma certa fonte ou se deveríamos mergulhar num lago desconhecido. Uma decisão errada pode ter graves consequências.
 Bem, com a DigiWater esse problema deixará de existir. 
 A DigiWater tem como missão facilitar o acesso a dados sobre a qualidade da água, funcionando como um megafone. 
 Através de um mapa com pins e da visualização de dados intuitiva em forma de relatórios de qualidade da água, a DigiWater irá ajudar os seus utilizadores a tomarem decisões mais informadas no que toca ao consumo e utilização de água.
 Globalmente, todos, desde autoridades e empresas credenciadas de teste de águas até indivíduos com dispositivos confiáveis ​​de alta tecnologia para testes de água, poderão contribuir para a rede da DigiWater e, assim, ajudar a cumprir a missão de fornecer dados sobre a segurança e qualidade da água a todos.
 Porque água é vida, não é verdade?
+
+![img](READMEresources/pitch.png)
 
 ## Requirements
 

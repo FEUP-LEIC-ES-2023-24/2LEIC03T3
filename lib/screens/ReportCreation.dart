@@ -145,7 +145,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
           Expanded(
             child: TextFormField(
               key: Key('locationField'),
-              decoration: InputDecoration(labelText: 'Location'),
+              decoration: InputDecoration(labelText: 'Location Name'),
 
               onChanged: (value) {
                 setState(() {
@@ -217,7 +217,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                 return 'Please enter a valid number';
               }
               return null;
-            }),
+            }, TextInputType.numberWithOptions(decimal: true)),
           ),
           SizedBox(width: 10),
           Expanded(
@@ -233,7 +233,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                 return 'Please enter a valid number';
               }
               return null;
-            }),
+            }, TextInputType.numberWithOptions(decimal: true)),
           ),
         ],
       ),
@@ -255,7 +255,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                 return 'Please enter oxygen levels';
               }
               return null;
-            }),
+            }, TextInputType.text)
           ),
           SizedBox(width: 10),
           Expanded(
@@ -303,7 +303,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                 return 'Please enter total nitrogen';
               }
               return null;
-            }),
+            }, TextInputType.text),
           ),
         ],
       ),
@@ -325,7 +325,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
                 return 'Please enter total phosphorus';
               }
               return null;
-            }),
+            }, TextInputType.text),
           ),
           SizedBox(width: 10),
           Expanded(
@@ -457,7 +457,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
   );
 }
 
-  Widget _buildStatField(String title, String label, Function(String) onChanged, String? Function(String?)? validator) {
+  Widget _buildStatField(String title, String label, Function(String) onChanged, String? Function(String?)? validator, [TextInputType keyboardType = TextInputType.text]) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,
@@ -479,7 +479,7 @@ class _WaterReportFormState extends State<WaterReportForm> {
           TextFormField(
             key: Key('${label.toLowerCase()}Field'),
             decoration: InputDecoration(labelText: label, border: InputBorder.none),
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            keyboardType: keyboardType,
             onChanged: onChanged,
             validator: validator,
           ),
@@ -487,6 +487,8 @@ class _WaterReportFormState extends State<WaterReportForm> {
       ),
     );
   }
+
+
 
   Widget _buildDropdownField(String label, List<String> items, Function(String?) onChanged, String? Function(String?)? validator) {
     return Container(
