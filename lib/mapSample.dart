@@ -84,7 +84,11 @@ class _MapPageState extends State<MapPage> {
               actions: <Widget>[
                 IconButton(
                   padding: const EdgeInsets.only(right: 30),
-                  icon: const FaIcon(FontAwesomeIcons.mapMarkedAlt, color: Colors.white, size: 30),
+                  icon: const Icon(
+                    Icons.edit_location_sharp,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
