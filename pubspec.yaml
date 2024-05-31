@@ -1,6 +1,9 @@
 name: project_es
 description: A new Flutter project.
 
+# Adicione ou atualize esta linha para definir a versão do seu aplicativo.
+version: 1.0.0+1
+
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
