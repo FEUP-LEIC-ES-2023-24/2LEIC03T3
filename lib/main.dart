@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _loadBookmarksFuture = Future.delayed(const Duration(seconds: 4), () => DatabaseHelper.instance.queryAllRows());
+    _loadBookmarksFuture = Future.delayed(const Duration(seconds: 4),
+        () => DatabaseHelper.instance.queryAllRows());
   }
 
   @override
