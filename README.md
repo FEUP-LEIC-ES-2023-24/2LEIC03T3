@@ -56,6 +56,15 @@ Porque água é vida, não é verdade?
 
 ![img](READMEresources/pitch.png)
 
+#### Good example to follow: [barragens.pt](https://barragens.pt/)
+
+#### Competition/Collaborations: 
+
+<img src="https://github.com/FEUP-LEIC-ES-2023-24/2LEIC03T3/assets/96893814/9010650c-7b9e-4e5c-96eb-db29d4f316a5" width="300" height="600">
+<img src="https://github.com/FEUP-LEIC-ES-2023-24/2LEIC03T3/assets/96893814/e0da880d-e920-4431-b471-8973cd7b67bb" width="300" height="600">
+<img src="https://github.com/FEUP-LEIC-ES-2023-24/2LEIC03T3/assets/96893814/e8761030-2567-4b1c-be9e-125429992fb9" width="300" height="600">
+<img src="https://github.com/FEUP-LEIC-ES-2023-24/2LEIC03T3/assets/96893814/f4340da7-62a2-49f9-b5f4-1fc90861cd39" width="300" height="600">
+
 ## Requirements
 
 ### Domain model
